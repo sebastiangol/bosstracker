@@ -1,0 +1,6 @@
+-- List databases: \l
+-- Connect to database: \c database_name
+-- List table(s) in database: \d table_name OR \d
+-- Text: VARCHAR(length) or TEXT
+-- Numbers: INT
+-- 
