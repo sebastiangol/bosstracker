@@ -9,6 +9,6 @@ All Profiles that are public will be displayed in a feed on the home page. Speci
 
 A PostgreSQL database will be used to store users, playthrough profiles and bosses.
 
-#### Database design
+#### Initial database design
 ![image](https://user-images.githubusercontent.com/75766182/153832247-618d368a-73ab-4dc1-a5f7-a514a33a75e5.png)
 
