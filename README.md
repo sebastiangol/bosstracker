@@ -11,4 +11,5 @@ A PostgreSQL database will be used to store users, playthrough profiles and boss
 
 #### Initial database design
 ![image](https://user-images.githubusercontent.com/75766182/153832247-618d368a-73ab-4dc1-a5f7-a514a33a75e5.png)
-
+#### Changes
+password -> user_password, public -> profile_public, count -> attempts
