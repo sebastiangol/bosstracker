@@ -15,5 +15,6 @@ A PostgreSQL database will be used to store users, playthrough profiles and boss
 * password -> user_password
 * public -> profile_public
 * count -> attempts
+* Added 'completed' column to Bosses table
 
 .
