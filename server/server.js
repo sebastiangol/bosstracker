@@ -8,60 +8,95 @@ app.use(express.json());
 
 // Get all profiles
 app.get('/api/v1/profiles', async (req, res) => {
-  const results = await db.query('SELECT * FROM users');
-  console.log(results);
-  res.status(200).json({
-    status: 'success',
-    data: {
-      profile: ['first', 'lvl1']
-    }
-  });
+  try {
+    const results = await db.query('SELECT * FROM profiles');
+    // console.log(results);
+    res.status(200).json({
+      status: 'success',
+      results: results.rows.length,
+      data: {
+        profiles: results.rows
+      }
+    });
+  } catch (err) {
+    console.log(err);
+  }
 });
 
 // Get one profile
-app.get('/api/v1/profiles/:id', (req, res) => {
-  console.log(req.params);
-
-  res.status(200).json({
-    status: 'success',
-    data: {
-      profile: 'second'
-    }
-  });
+app.get('/api/v1/profiles/:id', async (req, res) => {
+  try {
+    const results = await db.query(
+      'SELECT * FROM profiles WHERE profile_id = $1',
+      [req.params.id]
+    );
+    console.log(results.rows[0]);
+    res.status(200).json({
+      status: 'success',
+      results: results.rows.length,
+      data: {
+        profile: results.rows[0]
+      }
+    });
+  } catch (err) {
+    console.log(err);
+  }
 });
 
 // Create a profile
-app.post('/api/v1/profiles', (req, res) => {
-  console.log(req.body);
-
-  res.status(201).json({
-    status: 'success',
-    data: {
-      profile: '5th'
-    }
-  });
+app.post('/api/v1/profiles', async (req, res) => {
+  try {
+    const results = await db.query(
+      'INSERT INTO profiles(user_id, profile_name, profile_public) VALUES($1, $2, $3) RETURNING *',
+      [req.body.user_id, req.body.profile_name, req.body.profile_public]
+    );
+    console.log(results);
+    res.status(201).json({
+      status: 'success',
+      data: {
+        profiles: results.rows
+      }
+    });
+  } catch (err) {
+    console.log(err);
+  }
 });
 
 // Update a profile
-app.put('/api/v1/profiles/:id', (req, res) => {
-  console.log(req.params.id);
-  console.log(req.body);
-
-  res.status(200).json({
-    status: 'success',
-    data: {
-      profile: '3rd'
-    }
-  });
+app.put('/api/v1/profiles/:id', async (req, res) => {
+  try {
+    const results = await db.query(
+      'UPDATE profiles SET profile_name = $1, profile_public = $2 WHERE profile_id = $3 RETURNING *',
+      [req.body.profile_name, req.body.profile_public, req.params.id]
+    );
+    console.log(results);
+    res.status(200).json({
+      status: 'success',
+      data: {
+        profiles: results.rows[0]
+      }
+    });
+  } catch (err) {
+    console.log(err);
+  }
 });
 
 // Delete a profile
-app.delete('/api/v1/profiles/:id', (req, res) => {
-  console.log(req.params.id);
+app.delete('/api/v1/profiles/:id', async (req, res) => {
+  try {
+    const results = await db.query(
+      'DELETE FROM profiles WHERE profile_id = $1',
+      [req.params.id]
+    );
 
-  res.status(204).json({
-    status: 'success'
-  });
+    console.log(req.params.id);
+
+    res.status(204).json({
+      status: 'success'
+    });
+  } catch (err) {
+    console.log(err);
+  }
 });
 
 //Listen to port
