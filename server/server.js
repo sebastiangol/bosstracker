@@ -10,12 +10,14 @@ app.use(express.json());
 app.get('/api/v1/profiles', async (req, res) => {
   try {
     const results = await db.query('SELECT * FROM profiles');
+    const bosses = await db.query('SELECT * FROM bosses');
     // console.log(results);
     res.status(200).json({
       status: 'success',
       results: results.rows.length,
       data: {
-        profiles: results.rows
+        profiles: results.rows,
+        bosses: bosses.rows
       }
     });
   } catch (err) {
@@ -30,12 +32,17 @@ app.get('/api/v1/profiles/:id', async (req, res) => {
       'SELECT * FROM profiles WHERE profile_id = $1',
       [req.params.id]
     );
+    const bosses = await db.query(
+      'SELECT * FROM bosses WHERE profile_id = $1',
+      [req.params.id]
+    );
     console.log(results.rows[0]);
     res.status(200).json({
       status: 'success',
       results: results.rows.length,
       data: {
-        profile: results.rows[0]
+        profile: results.rows[0],
+        bosses: bosses.rows
       }
     });
   } catch (err) {
@@ -100,7 +107,7 @@ app.delete('/api/v1/profiles/:id', async (req, res) => {
 });
 
 //Listen to port
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
