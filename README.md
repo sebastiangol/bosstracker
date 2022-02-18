@@ -1,5 +1,5 @@
 # Boss Tracker
-Application for tracking video game boss progress, using React/Next.js for the frontend and PostgreSQL/Node.js/Express for the backend.
+Application for tracking video game boss progress, using React/TailwindCSS for the frontend and PostgreSQL/Node.js/Express for the backend.
 
 Project started on 13/02/2022. Deadline: 24/02/2022
 
