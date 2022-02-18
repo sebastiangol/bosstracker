@@ -1,7 +1,15 @@
 module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
   theme: {
-    extend: {}
+    extend: {
+      fontFamily: {
+        oswald: ['Oswald', 'sans-serif']
+      }
+    }
   },
-  plugins: []
+  plugins: [
+    require('@tailwindcss/forms'),
+    require('tailwind-scrollbar'),
+    require('tailwind-scrollbar-hide')
+  ]
 };
