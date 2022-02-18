@@ -17,4 +17,6 @@ A PostgreSQL database will be used to store users, playthrough profiles and boss
 * count -> attempts
 * Added 'completed' column to Bosses table
 
-.
+#### Initial Header
+![image](https://user-images.githubusercontent.com/75766182/154664905-9534aae8-81eb-4623-b10e-278500cabe22.png)
+When a button is hovered over, the button changes shape and a tooltip appears below.
