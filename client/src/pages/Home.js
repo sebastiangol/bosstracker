@@ -1,13 +1,14 @@
 import React from 'react';
 import Header from '../components/Header';
+import Landing from '../components/Landing';
+import Feed from '../components/Feed';
 
 function Home() {
   return (
     <div className="">
       <Header />
-      <div className="flex justify-center items-center h-[90vh] text-[7.5rem] text-center">
-        'U'
-      </div>
+      <Landing />
+      <Feed />
     </div>
   );
 }

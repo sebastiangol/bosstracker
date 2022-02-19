@@ -12,14 +12,14 @@ import {
 
 function Header() {
   return (
-    <header className="p-3 shadow-md sticky top-0 z-99 bg-teal-800 border-b-teal-900">
+    <header className="p-3 shadow-md fixed w-screen top-0 z-50 bg-teal-800 border-b-teal-900">
       <div className="flex justify-between max-w-6xl mx-5 lg:mx-auto">
         {/* left */}
         <div className="flex items-center w-full">
           <div className="mr-4">
             <img className="h-12" src={logo} alt="" />
           </div>
-          <p className="text-4xl">Boss Tracker</p>
+          <p className="text-4xl font-bold">Boss Tracker</p>
         </div>
 
         {/* middle */}
@@ -45,11 +45,11 @@ function Header() {
   );
 }
 
-const HeaderButton = ({ Icon, text, position }) => {
+const HeaderButton = ({ Icon, text }) => {
   return (
     <div className="header-button group">
       <Icon className="h-8" />
-      <span className={`button-tooltip group-hover:scale-100`}>{text}</span>
+      <span className="button-tooltip group-hover:scale-100">{text}</span>
     </div>
   );
 };
