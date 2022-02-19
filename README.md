@@ -26,5 +26,5 @@ When a button is hovered over, the button changes shape and a tooltip appears be
 The "Create one!" button will take the user to the playthrough-creation page if they are logged in, or to the Login page if they are not logged in.
 
 #### Playthroughs Feed
-![image](https://user-images.githubusercontent.com/75766182/154792898-63faf49e-4880-45a8-b1e9-4bc0f72a0c89.png)
+![image](https://user-images.githubusercontent.com/75766182/154793268-eb958bf6-efa3-4051-bbeb-6702d9af073d.png)
 Currently contains 4 dummy playthroughs with hard-coded values.
