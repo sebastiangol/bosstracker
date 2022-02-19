@@ -20,3 +20,11 @@ A PostgreSQL database will be used to store users, playthrough profiles and boss
 #### Initial Header
 ![image](https://user-images.githubusercontent.com/75766182/154664905-9534aae8-81eb-4623-b10e-278500cabe22.png)
 When a button is hovered over, the button changes shape and a tooltip appears below.
+
+#### Landing Page
+![image](https://user-images.githubusercontent.com/75766182/154793021-659386fb-01bc-4406-83cf-641819f9ec49.png)
+The "Create one!" button will take the user to the playthrough-creation page if they are logged in, or to the Login page if they are not logged in.
+
+#### Playthroughs Feed
+![image](https://user-images.githubusercontent.com/75766182/154792898-63faf49e-4880-45a8-b1e9-4bc0f72a0c89.png)
+Currently contains 4 dummy playthroughs with hard-coded values.
