@@ -11,5 +11,8 @@ module.exports = {
     require('@tailwindcss/forms'),
     require('tailwind-scrollbar'),
     require('tailwind-scrollbar-hide')
-  ]
+  ],
+  variants: {
+    scrollbar: ['rounded']
+  }
 };

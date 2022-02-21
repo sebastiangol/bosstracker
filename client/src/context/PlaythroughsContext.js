@@ -6,6 +6,7 @@ export const PlaythroughsContextProvider = props => {
   const [playthroughs, setPlaythroughs] = useState([]);
   const [bosses, setBosses] = useState([]);
   const [users, setUsers] = useState([]);
+  const [search, setSearch] = useState('');
 
   return (
     <PlaythroughsContext.Provider
@@ -15,7 +16,9 @@ export const PlaythroughsContextProvider = props => {
         bosses,
         setBosses,
         users,
-        setUsers
+        setUsers,
+        search,
+        setSearch
       }}
     >
       {props.children}

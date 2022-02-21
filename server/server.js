@@ -12,7 +12,9 @@ app.use(express.json());
 app.get('/api/v1/profiles', async (req, res) => {
   try {
     const users = await db.query('SELECT user_id, user_name FROM users');
-    const results = await db.query('SELECT * FROM profiles');
+    const results = await db.query(
+      'SELECT profile_id, profile_name, profiles.user_id, users.user_name, profile_public FROM users, profiles'
+    );
     const bosses = await db.query('SELECT * FROM bosses');
     // console.log(results);
     res.status(200).json({

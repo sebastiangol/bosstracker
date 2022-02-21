@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import logo from '../images/logo.png';
 import {
   SearchIcon,
@@ -9,8 +9,11 @@ import {
   DocumentAddIcon,
   FolderIcon
 } from '@heroicons/react/outline';
+import { PlaythroughsContext } from '../context/PlaythroughsContext';
 
 function Header() {
+  const { search, setSearch } = useContext(PlaythroughsContext);
+
   return (
     <header className="p-3 shadow-md fixed w-screen top-0 z-50 bg-teal-800 border-b-teal-900">
       <div className="flex justify-between max-w-6xl mx-5 lg:mx-auto">
@@ -30,6 +33,9 @@ function Header() {
           <input
             type="text"
             placeholder="Search for a playthrough"
+            onChange={e => {
+              setSearch(e.target.value);
+            }}
             className="block bg-teal-900 border-teal-900 rounded-md w-full h-10 pl-10 text-xl focus:ring-amber-400 focus:border-amber-400"
           />
         </div>

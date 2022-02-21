@@ -7,7 +7,7 @@ import { PlaythroughsContextProvider } from './context/PlaythroughsContext';
 function App() {
   return (
     <PlaythroughsContextProvider>
-      <div className="h-screen overflow-y-scroll m-0 p-0 scrollbar-hide md:scrollbar-default scrollbar-thin scrollbar-thumb-black">
+      <div className="h-screen overflow-y-scroll m-0 p-0 scrollbar-hide md:scrollbar-default scrollbar-thin scrollbar-thumb-amber-400">
         <Router>
           <Routes>
             <Route path="/" element={<Home />} />
