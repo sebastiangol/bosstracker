@@ -37,3 +37,40 @@ completed BOOLEAN NOT NULL
 
 INSERT INTO users (user_id, user_name, user_password) VALUES (DEFAULT, 'Seb', __password__);
 
+INSERT INTO profiles (user_id, profile_name, profile_public) VALUES (1, 'first run', true);
+INSERT INTO profiles (user_id, profile_name, profile_public) VALUES (1, 'LOL', false);
+INSERT INTO profiles (user_id, profile_name, profile_public) VALUES (1, 'ng+7', true);
+INSERT INTO profiles (user_id, profile_name, profile_public) VALUES (1, 'Best character ever!', true);
+INSERT INTO profiles (user_id, profile_name, profile_public) VALUES (1, 'cool', false);
+INSERT INTO profiles (user_id, profile_name, profile_public) VALUES (1, 'super duper fantastic run', true);
+
+INSERT INTO bosses (profile_id, boss_name, attempts, notes, completed) VALUES (1, 'boss1', 3, 'do something', true);
+INSERT INTO bosses (profile_id, boss_name, attempts, notes, completed) VALUES (1, 'boss2', 2, 'Don''t do this thing, do that', true);
+INSERT INTO bosses (profile_id, boss_name, attempts, notes, completed) VALUES (1, 'boss3', 11, '', true);
+INSERT INTO bosses (profile_id, boss_name, attempts, notes, completed) VALUES (1, 'boss4', 21, 'whatever', true);
+INSERT INTO bosses (profile_id, boss_name, attempts, notes, completed) VALUES (1, 'boss5', 1, 'easy', true);
+INSERT INTO bosses (profile_id, boss_name, attempts, notes, completed) VALUES (1, 'boss6', 15, 'Please help', false);
+
+INSERT INTO bosses (profile_id, boss_name, attempts, notes, completed) VALUES (3, 'one boss', 2, 'easy', false);
+INSERT INTO bosses (profile_id, boss_name, attempts, notes, completed) VALUES (3, 'two boss', 21, 'hard', false);
+
+INSERT INTO bosses (profile_id, boss_name, attempts, notes, completed) VALUES (4, 'Holy Beast Ewan', 2, '', true);
+INSERT INTO bosses (profile_id, boss_name, attempts, notes, completed) VALUES (4, 'Pitchfork Knight', 1, '', false);
+INSERT INTO bosses (profile_id, boss_name, attempts, notes, completed) VALUES (4, 'Sludge', 2, '', true);
+INSERT INTO bosses (profile_id, boss_name, attempts, notes, completed) VALUES (4, 'Reaper', 5, '', true);
+
+INSERT INTO bosses (profile_id, boss_name, attempts, notes, completed) VALUES (5, 'big head', 11, '', true);
+INSERT INTO bosses (profile_id, boss_name, attempts, notes, completed) VALUES (5, 'Weird enemy', 1, 'Hit legs', true);
+INSERT INTO bosses (profile_id, boss_name, attempts, notes, completed) VALUES (5, 'Scary boss', 5, '', true);
+INSERT INTO bosses (profile_id, boss_name, attempts, notes, completed) VALUES (5, 'Demon king', 4, 'Water', true);
+INSERT INTO bosses (profile_id, boss_name, attempts, notes, completed) VALUES (5, 'A', 44, '', true);
+
+INSERT INTO bosses (profile_id, boss_name, attempts, notes, completed) VALUES (6, '1st one', 32, 'How is this possible', true);
+INSERT INTO bosses (profile_id, boss_name, attempts, notes, completed) VALUES (6, '2nd', 2, '', true);
+INSERT INTO bosses (profile_id, boss_name, attempts, notes, completed) VALUES (6, '3rd', 11, '', true);
+
+INSERT INTO bosses (profile_id, boss_name, attempts, notes, completed) VALUES (7, 'first boss', 21, '', true);
+INSERT INTO bosses (profile_id, boss_name, attempts, notes, completed) VALUES (7, 'dwarf thing', 4, 'Jump over the thing', true);
+INSERT INTO bosses (profile_id, boss_name, attempts, notes, completed) VALUES (7, 'Ornstein and Jack', 2, 'Separate', false);
+INSERT INTO bosses (profile_id, boss_name, attempts, notes, completed) VALUES (7, 'lost knight ian', 9, 'He is at this location', true);
+INSERT INTO bosses (profile_id, boss_name, attempts, notes, completed) VALUES (7, 'The Dark Lord of Something', 5, 'I can''t see', false);

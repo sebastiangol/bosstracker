@@ -1,14 +1,17 @@
 require('dotenv').config();
 
 const express = require('express');
+const cors = require('cors');
 const db = require('./db');
 const app = express();
 
+app.use(cors());
 app.use(express.json());
 
 // Get all profiles
 app.get('/api/v1/profiles', async (req, res) => {
   try {
+    const users = await db.query('SELECT user_id, user_name FROM users');
     const results = await db.query('SELECT * FROM profiles');
     const bosses = await db.query('SELECT * FROM bosses');
     // console.log(results);
@@ -16,6 +19,7 @@ app.get('/api/v1/profiles', async (req, res) => {
       status: 'success',
       results: results.rows.length,
       data: {
+        users: users.rows,
         profiles: results.rows,
         bosses: bosses.rows
       }
