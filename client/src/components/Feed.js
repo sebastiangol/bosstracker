@@ -36,7 +36,7 @@ function Feed(props) {
 
   useEffect(() => {
     setFilteredData(
-      playthroughs.filter(playthrough => {
+      playthroughs?.filter(playthrough => {
         if (search == '') {
           return playthrough;
         } else if (
@@ -64,7 +64,7 @@ function Feed(props) {
             Your search found no results.
           </div>
         ) : (
-          filteredData.map(
+          filteredData?.map(
             playthrough =>
               playthrough.profile_public && (
                 <Playthrough

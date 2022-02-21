@@ -10,9 +10,35 @@ import {
   FolderIcon
 } from '@heroicons/react/outline';
 import { PlaythroughsContext } from '../context/PlaythroughsContext';
+import { Route, useNavigate } from 'react-router-dom';
+//navigate('/');                    // Equivalent to "history.push('/');"
+//navigate('/', { replace: true }); // Equivalent to "history.replace('/');"
+//navigate(-1);                     // Equivalent to "history.goBack();"
 
 function Header() {
-  const { search, setSearch } = useContext(PlaythroughsContext);
+  const { search, setSearch, loggedIn, setLoggedIn } =
+    useContext(PlaythroughsContext);
+  let navigate = useNavigate();
+
+  const navHome = e => {
+    e.preventDefault();
+    navigate('/');
+  };
+
+  const navNew = e => {
+    e.preventDefault();
+    navigate('/newplaythrough');
+  };
+
+  const navYour = e => {
+    e.preventDefault();
+    navigate('/yourplaythroughs');
+  };
+
+  const navRegister = e => {
+    e.preventDefault();
+    navigate('/register');
+  };
 
   return (
     <header className="p-3 shadow-md fixed w-screen top-0 z-50 bg-teal-800 border-b-teal-900">
@@ -42,18 +68,56 @@ function Header() {
 
         {/* right */}
         <div className="flex items-center space-x-10 w-full justify-end">
-          <HeaderButton Icon={HomeIcon} text="Home" />
-          <HeaderButton Icon={LoginIcon} text="Log In" />
-          <HeaderButton Icon={UserAddIcon} text="Register" />
+          <HeaderButton Icon={HomeIcon} text="Home" onClick={e => navHome(e)} />
+          {loggedIn ? (
+            <>
+              <HeaderButton
+                Icon={DocumentAddIcon}
+                text="New Playthrough"
+                onClick={e => navNew(e)}
+              />
+              <HeaderButton
+                Icon={FolderIcon}
+                text="Your Playthroughs"
+                onClick={e => {
+                  navYour(e);
+                }}
+              />
+              <HeaderButton
+                Icon={LogoutIcon}
+                text="Log Out"
+                onClick={() => {
+                  setLoggedIn(false);
+                }}
+              />
+            </>
+          ) : (
+            <>
+              <HeaderButton
+                Icon={LoginIcon}
+                text="Log In"
+                onClick={() => {
+                  setLoggedIn(true);
+                }}
+              />
+              <HeaderButton
+                Icon={UserAddIcon}
+                text="Register"
+                onClick={e => {
+                  navRegister(e);
+                }}
+              />
+            </>
+          )}
         </div>
       </div>
     </header>
   );
 }
 
-const HeaderButton = ({ Icon, text }) => {
+const HeaderButton = ({ Icon, text, onClick }) => {
   return (
-    <div className="header-button group">
+    <div className="header-button group" onClick={onClick}>
       <Icon className="h-8" />
       <span className="button-tooltip group-hover:scale-100">{text}</span>
     </div>
