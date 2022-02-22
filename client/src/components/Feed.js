@@ -58,8 +58,16 @@ function Feed(props) {
   return (
     <div className="flex flex-col items-center text-center bg-teal-800 xl:max-w-6xl mx-auto p-4 m-4 mt-0 rounded-lg shadow-md">
       <h2 className="text-6xl pb-6">Public Playthroughs</h2>
-      <div className="flex flex-wrap justify-center">
-        {filteredData.length === 0 ? (
+      <div
+        className={`${
+          filteredData?.length === 0 ? 'flex' : 'grid grid-cols-2'
+        }`}
+      >
+        {playthroughs.length === 0 ? (
+          <div className="flex justify-center items-center text-3xl m-4">
+            No playthroughs were found.
+          </div>
+        ) : filteredData.length === 0 ? (
           <div className="flex justify-center items-center text-3xl m-4">
             Your search found no results.
           </div>

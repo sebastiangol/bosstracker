@@ -56,6 +56,33 @@ app.get('/api/v1/profiles/:id', async (req, res) => {
   }
 });
 
+// Get all profiles belonging to a certain user
+app.get('/api/v1/profiles/user/:id', async (req, res) => {
+  try {
+    const users = await db.query(
+      'SELECT user_id, user_name FROM users WHERE user_id = $1',
+      [req.params.id]
+    );
+    const results = await db.query(
+      'SELECT profile_id, profile_name, profiles.user_id, users.user_name, profile_public FROM users, profiles WHERE profiles.user_id = $1',
+      [req.params.id]
+    );
+    const bosses = await db.query('SELECT * FROM bosses');
+    // console.log(results);
+    res.status(200).json({
+      status: 'success',
+      results: results.rows.length,
+      data: {
+        users: users.rows,
+        profiles: results.rows,
+        bosses: bosses.rows
+      }
+    });
+  } catch (err) {
+    console.log(err);
+  }
+});
+
 // Create a profile
 app.post('/api/v1/profiles', async (req, res) => {
   try {

@@ -8,6 +8,7 @@ export const PlaythroughsContextProvider = props => {
   const [users, setUsers] = useState([]);
   const [search, setSearch] = useState('');
   const [loggedIn, setLoggedIn] = useState('');
+  const [modalOpen, setModalOpen] = useState(false);
 
   return (
     <PlaythroughsContext.Provider
@@ -21,7 +22,9 @@ export const PlaythroughsContextProvider = props => {
         search,
         setSearch,
         loggedIn,
-        setLoggedIn
+        setLoggedIn,
+        modalOpen,
+        setModalOpen
       }}
     >
       {props.children}

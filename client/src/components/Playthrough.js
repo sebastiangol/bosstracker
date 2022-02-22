@@ -14,7 +14,7 @@ function Playthrough({ id, name, creator }) {
     setSearch
   } = useContext(PlaythroughsContext);
   return (
-    <div className="bg-teal-900 flex flex-col p-4 border border-amber-400 m-3 rounded-md shadow-lg hover:scale-105 hover:bg-teal-800 active:scale-95 transition-all duration-200 ease-out w-[33rem] cursor-pointer h-[26.3rem] relative">
+    <div className="bg-teal-900 flex flex-col p-4 border border-amber-400 m-3 rounded-md shadow-lg hover:scale-105 hover:bg-teal-800 active:scale-100 transition-all duration-200 ease-in-out w-[33rem] cursor-pointer h-[26.3rem] relative">
       <h3 className="pb-1 text-4xl">{name}</h3>
       <h4 className="pb-2 text-xl">
         By {users.map(user => creator === user.user_id && user.user_name)}

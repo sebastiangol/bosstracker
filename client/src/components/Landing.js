@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import imgLanding from '../images/landing.png';
+import { PlaythroughsContext } from '../context/PlaythroughsContext';
+import NewPlaythrough from './NewPlaythrough';
 
 function Landing() {
+  const { modalOpen, setModalOpen } = useContext(PlaythroughsContext);
+
   return (
     <div className="w-screen relative flex items-center justify-center">
       <img src={imgLanding} alt="" className="w-full" />
@@ -10,11 +14,15 @@ function Landing() {
         <div className="flex flex-col items-center">
           <h1>Browse Playthroughs Below</h1>
           <h1 className="p-6">Or</h1>
-          <div className="cursor-pointer flex items-center justify-center p-2 text-amber-400 border-2 border-amber-400 rounded-md shadow-lg bg-teal-800 w-fit hover:scale-105 active:scale-100 transition-transform duration-150 ease-out">
+          <div
+            className="cursor-pointer flex items-center justify-center p-2 text-amber-400 border-2 border-amber-400 rounded-md shadow-lg bg-teal-800 w-fit hover:scale-105 active:scale-100 transition-transform duration-150 ease-in-out"
+            onClick={() => setModalOpen(true)}
+          >
             Create one!
           </div>
         </div>
       </div>
+      <NewPlaythrough />
     </div>
   );
 }
