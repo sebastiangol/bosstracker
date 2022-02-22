@@ -38,3 +38,10 @@ The "Create one!" button will open the New Playthrough modal if they are logged 
 
 ### New Playthrough Modal
 ![image](https://user-images.githubusercontent.com/75766182/155157475-136efce0-3e8f-48f3-b58f-b4f3a018c73a.png)
+
+### Login Page
+![image](https://user-images.githubusercontent.com/75766182/155228877-ecf9cb3a-7044-4669-8884-1043fcf365e5.png)
+
+### Register Page
+![image](https://user-images.githubusercontent.com/75766182/155228955-6c1f7b91-ed02-4c45-9791-f42f221f43b9.png)
+
