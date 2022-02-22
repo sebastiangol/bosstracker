@@ -35,7 +35,6 @@ The "Create one!" button will open the New Playthrough modal if they are logged 
 
 ### Playthroughs Feed
 ![image](https://user-images.githubusercontent.com/75766182/154793268-eb958bf6-efa3-4051-bbeb-6702d9af073d.png)
-Currently contains 4 dummy playthroughs with hard-coded values.
 
 ### New Playthrough Modal
 ![image](https://user-images.githubusercontent.com/75766182/155157475-136efce0-3e8f-48f3-b58f-b4f3a018c73a.png)
