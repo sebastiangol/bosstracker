@@ -75,7 +75,7 @@ function YourPlaythroughs() {
             <div className="flex flex-col justify-center items-center">
               <p className="text-3xl m-4">You have no playthroughs yet.</p>
               <div
-                className="cursor-pointer flex items-center justify-center p-2 text-amber-400 border-2 border-amber-400 rounded-md shadow-lg bg-teal-800 text-2xl font-bold w-fit hover:scale-105 active:scale-100 transition-transform duration-150 ease-in-out"
+                className="cursor-pointer flex items-center justify-center p-2 text-amber-400 border-2 border-amber-400 rounded-md shadow-lg bg-teal-800 hover:bg-teal-700 text-2xl font-bold w-fit hover:scale-105 active:scale-100 transition-all duration-150 ease-in-out"
                 onClick={() => setModalOpen(true)}
               >
                 Create one!

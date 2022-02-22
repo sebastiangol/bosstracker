@@ -18,6 +18,7 @@ function Feed(props) {
   const [filteredData, setFilteredData] = useState([]);
 
   useEffect(() => {
+    setSearch('');
     const fetchData = async () => {
       try {
         const response = await PlaythroughsAPI.get('/');

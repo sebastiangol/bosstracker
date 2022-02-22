@@ -15,7 +15,7 @@ function Landing() {
           <h1>Browse Playthroughs Below</h1>
           <h1 className="p-6">Or</h1>
           <div
-            className="cursor-pointer flex items-center justify-center p-2 text-amber-400 border-2 border-amber-400 rounded-md shadow-lg bg-teal-800 w-fit hover:scale-105 active:scale-100 transition-transform duration-150 ease-in-out"
+            className="cursor-pointer flex items-center justify-center p-2 text-amber-400 border-2 border-amber-400 rounded-md shadow-lg bg-teal-800 hover:bg-teal-700 w-fit hover:scale-105 active:scale-100 transition-all duration-150 ease-in-out"
             onClick={() => setModalOpen(true)}
           >
             Create one!

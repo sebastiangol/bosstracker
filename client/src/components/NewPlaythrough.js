@@ -39,7 +39,7 @@ function NewPlaythrough() {
               setName(e.target.value);
             }}
             value={name}
-            className="block bg-teal-900 border-teal-900 rounded-md w-max h-10 pl-1 text-xl focus:ring-amber-400 focus:border-amber-400 m-4 placeholder:text-center text-center"
+            className="text-field"
           />
           <div className="flex justify-center items-center" value={isPublic}>
             <span
@@ -75,9 +75,7 @@ function NewPlaythrough() {
               Private
             </span>
           </div>
-          <div className="cursor-pointer flex items-center justify-center p-2 mb-3 mt-2 text-amber-400 border-2 border-amber-400 rounded-md shadow-lg bg-teal-800 w-fit font-bold hover:scale-105 active:scale-100 transition-transform duration-150 ease-out">
-            Create Playthrough
-          </div>
+          <div className="normal-button">Create Playthrough</div>
         </form>
       </div>
     </div>

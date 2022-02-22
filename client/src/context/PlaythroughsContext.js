@@ -7,7 +7,7 @@ export const PlaythroughsContextProvider = props => {
   const [bosses, setBosses] = useState([]);
   const [users, setUsers] = useState([]);
   const [search, setSearch] = useState('');
-  const [loggedIn, setLoggedIn] = useState('');
+  const [session, setSession] = useState('');
   const [modalOpen, setModalOpen] = useState(false);
 
   return (
@@ -21,8 +21,8 @@ export const PlaythroughsContextProvider = props => {
         setUsers,
         search,
         setSearch,
-        loggedIn,
-        setLoggedIn,
+        session,
+        setSession,
         modalOpen,
         setModalOpen
       }}

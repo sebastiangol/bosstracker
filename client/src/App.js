@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { PlaythroughsContextProvider } from './context/PlaythroughsContext';
 import YourPlaythroughs from './pages/YourPlaythroughs';
 import Register from './pages/Register';
+import Login from './pages/Login';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/profiles/:id" element={<Playthrough />} />
             <Route path="/profiles/user/:id" element={<YourPlaythroughs />} />
+            <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
           </Routes>
         </Router>

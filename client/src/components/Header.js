@@ -17,7 +17,7 @@ import NewPlaythrough from './NewPlaythrough';
 //navigate(-1);                     // Equivalent to "history.goBack();"
 
 function Header() {
-  const { search, setSearch, loggedIn, setLoggedIn, modalOpen, setModalOpen } =
+  const { search, setSearch, session, setSession, modalOpen, setModalOpen } =
     useContext(PlaythroughsContext);
   let navigate = useNavigate();
 
@@ -36,6 +36,11 @@ function Header() {
     navigate('/register');
   };
 
+  const navLogin = e => {
+    e.preventDefault();
+    navigate('/login');
+  };
+
   useEffect(() => {
     setModalOpen(false);
   }, [Header]);
@@ -46,10 +51,15 @@ function Header() {
         <div className="flex justify-between max-w-6xl mx-5 lg:mx-auto">
           {/* left */}
           <div className="flex items-center w-full">
-            <div className="mr-4">
+            <div className="mr-4 cursor-pointer" onClick={e => navHome(e)}>
               <img className="h-12" src={logo} alt="" />
             </div>
-            <p className="text-4xl font-bold">Boss Tracker</p>
+            <p
+              className="text-4xl font-bold cursor-pointer"
+              onClick={e => navHome(e)}
+            >
+              Boss Tracker
+            </p>
           </div>
 
           {/* middle */}
@@ -74,7 +84,7 @@ function Header() {
               text="Home"
               onClick={e => navHome(e)}
             />
-            {loggedIn ? (
+            {session ? (
               <>
                 <HeaderButton
                   Icon={DocumentAddIcon}
@@ -92,7 +102,7 @@ function Header() {
                   Icon={LogoutIcon}
                   text="Log Out"
                   onClick={e => {
-                    setLoggedIn(false);
+                    setSession(false);
                     navHome(e);
                   }}
                 />
@@ -103,8 +113,7 @@ function Header() {
                   Icon={LoginIcon}
                   text="Log In"
                   onClick={e => {
-                    setLoggedIn(true);
-                    navHome(e);
+                    navLogin(e);
                   }}
                 />
                 <HeaderButton
