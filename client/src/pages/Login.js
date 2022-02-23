@@ -18,7 +18,6 @@ function Login() {
               onChange={e => {
                 setName(e.target.value);
               }}
-              value={name}
               className="text-field mb-1"
             />
             <input
@@ -27,7 +26,6 @@ function Login() {
               onChange={e => {
                 setPassword(e.target.value);
               }}
-              value={password}
               className="text-field mb-3"
             />
             <div className="normal-button">Log In</div>

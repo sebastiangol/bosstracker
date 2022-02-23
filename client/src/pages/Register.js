@@ -1,10 +1,25 @@
 import React, { useState } from 'react';
+import RegisterAPI from '../apis/RegisterAPI';
 import Header from '../components/Header';
 
 function Register() {
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+
+  const registerUser = async e => {
+    e.preventDefault();
+
+    try {
+      const response = await RegisterAPI.post('/', {
+        user_name: name,
+        user_password: password
+      });
+      console.log(response);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <div className="flex flex-col justify-center items-center fixed h-screen w-screen">
@@ -19,7 +34,6 @@ function Register() {
               onChange={e => {
                 setName(e.target.value);
               }}
-              value={name}
               className="text-field mb-1"
             />
             <input
@@ -28,7 +42,6 @@ function Register() {
               onChange={e => {
                 setPassword(e.target.value);
               }}
-              value={password}
               className="text-field mb-1"
             />
             <input
@@ -37,10 +50,11 @@ function Register() {
               onChange={e => {
                 setConfirmPassword(e.target.value);
               }}
-              value={confirmPassword}
               className="text-field mb-3"
             />
-            <div className="normal-button">Register</div>
+            <div className="normal-button" onClick={registerUser}>
+              Register
+            </div>
           </form>
         </div>
       </div>

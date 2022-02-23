@@ -1,6 +1,6 @@
 import React from 'react';
 import Home from './pages/Home';
-import Playthrough from './pages/Playthrough';
+import DetailedPlaythrough from './pages/DetailedPlaythrough';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { PlaythroughsContextProvider } from './context/PlaythroughsContext';
 import YourPlaythroughs from './pages/YourPlaythroughs';
@@ -14,7 +14,7 @@ function App() {
         <Router>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/profiles/:id" element={<Playthrough />} />
+            <Route path="/profiles/:id" element={<DetailedPlaythrough />} />
             <Route path="/profiles/user/:id" element={<YourPlaythroughs />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />

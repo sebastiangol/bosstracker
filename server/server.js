@@ -8,6 +8,27 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// Register
+app.post('/api/v1/register', async (req, res) => {
+  try {
+    const results = await db.query(
+      'INSERT INTO users(user_name, user_password) VALUES($1, $2) RETURNING *',
+      [req.body.user_name, req.body.user_password]
+    );
+    console.log(results);
+    res.status(201).json({
+      status: 'success',
+      data: {
+        users: results.rows
+      }
+    });
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+// Log In
+
 // Get all profiles
 app.get('/api/v1/profiles', async (req, res) => {
   try {
@@ -42,7 +63,6 @@ app.get('/api/v1/profiles/:id', async (req, res) => {
       'SELECT * FROM bosses WHERE profile_id = $1',
       [req.params.id]
     );
-    console.log(results.rows[0]);
     res.status(200).json({
       status: 'success',
       results: results.rows.length,

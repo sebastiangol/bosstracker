@@ -64,11 +64,11 @@ function Feed(props) {
           filteredData?.length === 0 ? 'flex' : 'grid grid-cols-2'
         }`}
       >
-        {playthroughs.length === 0 ? (
+        {playthroughs?.length === 0 ? (
           <div className="flex justify-center items-center text-3xl m-4">
             No playthroughs were found.
           </div>
-        ) : filteredData.length === 0 ? (
+        ) : filteredData?.length === 0 ? (
           <div className="flex justify-center items-center text-3xl m-4">
             Your search found no results.
           </div>

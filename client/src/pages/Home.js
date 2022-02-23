@@ -17,7 +17,6 @@ function Home() {
       <Header />
       <Landing />
       <Feed />
-      {/* <NewPlaythrough /> */}
     </div>
   );
 }
