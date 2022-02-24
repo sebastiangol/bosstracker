@@ -45,8 +45,8 @@ The "Create one!" button will open the New Playthrough modal if they are logged 
 ### Register Page
 ![image](https://user-images.githubusercontent.com/75766182/155228955-6c1f7b91-ed02-4c45-9791-f42f221f43b9.png)
 
-#### 24/02/2022
-### Remaining tasks
+### 24/02/2022
+#### Remaining tasks
 * A more advanced login authentication (JWT)
 * Password hashing (Bcrypt)
 * Improvement of Detailed Playthrough page
