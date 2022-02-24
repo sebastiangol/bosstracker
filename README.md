@@ -52,4 +52,5 @@ The "Create one!" button will open the New Playthrough modal if they are logged 
 * Improvement of Detailed Playthrough page
 * Allow each boss to be expanded to view boss notes
 * Update and Delete functionality for profiles and bosses
+* Responsive on all screen sizes
 
