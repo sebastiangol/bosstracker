@@ -7,10 +7,12 @@ export const PlaythroughsContextProvider = props => {
   const [bosses, setBosses] = useState([]);
   const [users, setUsers] = useState([]);
   const [search, setSearch] = useState('');
-  const [session, setSession] = useState('');
+  const [session, setSession] = useState(-1);
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedPlaythrough, setSelectedPlaythrough] = useState([]);
   const [selectedBosses, setSelectedBosses] = useState([]);
+  const [accountCreated, setAccountCreated] = useState('');
+
   return (
     <PlaythroughsContext.Provider
       value={{
@@ -29,7 +31,9 @@ export const PlaythroughsContextProvider = props => {
         selectedPlaythrough,
         setSelectedPlaythrough,
         selectedBosses,
-        setSelectedBosses
+        setSelectedBosses,
+        accountCreated,
+        setAccountCreated
       }}
     >
       {props.children}

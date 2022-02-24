@@ -73,7 +73,7 @@ function YourPlaythroughs() {
         >
           {filteredData?.length === 0 ? (
             <div className="flex flex-col justify-center items-center">
-              <p className="text-3xl m-4">You have no playthroughs yet.</p>
+              <p className="text-3xl m-4">You have no playthroughs yet!</p>
               <div
                 className="cursor-pointer flex items-center justify-center p-2 text-amber-400 border-2 border-amber-400 rounded-md shadow-lg bg-teal-800 hover:bg-teal-700 text-2xl font-bold w-fit hover:scale-105 active:scale-100 transition-all duration-150 ease-in-out"
                 onClick={() => setModalOpen(true)}
@@ -82,17 +82,16 @@ function YourPlaythroughs() {
               </div>
             </div>
           ) : (
-            filteredData?.map(
-              playthrough =>
-                playthrough.profile_public && (
-                  <Playthrough
-                    key={playthrough.profile_id}
-                    id={playthrough.profile_id}
-                    name={playthrough.profile_name}
-                    creator={playthrough.user_id}
-                  />
-                )
-            )
+            filteredData?.map(playthrough => (
+              <Playthrough
+                key={playthrough.profile_id}
+                id={playthrough.profile_id}
+                name={playthrough.profile_name}
+                creator={playthrough.user_id}
+                isPublic={playthrough.profile_public}
+                location="personal"
+              />
+            ))
           )}
         </div>
       </div>

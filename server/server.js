@@ -11,31 +11,74 @@ app.use(express.json());
 // Register
 app.post('/api/v1/register', async (req, res) => {
   try {
+    // bcrypt
+    // const saltRound = 10;
+    // const salt = await bcrypt.genSalt(saltRound);
+
+    // const bcryptPassword = await bcrypt.hash(req.body.user_password, salt);
+
     const results = await db.query(
       'INSERT INTO users(user_name, user_password) VALUES($1, $2) RETURNING *',
       [req.body.user_name, req.body.user_password]
     );
-    console.log(results);
-    res.status(201).json({
-      status: 'success',
-      data: {
-        users: results.rows
-      }
-    });
+    if (results) {
+      console.log(results);
+      res.status(201).json({
+        status: 'success',
+        data: {
+          users: results.rows[0]
+        }
+      });
+    } else {
+      console.log('This username already exists');
+      res.status(403).json({
+        status: 'error',
+        message: 'This username already exists'
+      });
+    }
   } catch (err) {
     console.log(err);
+    res.status(403).json({
+      status: 'error',
+      message: 'This username already exists'
+    });
   }
 });
 
 // Log In
+app.post('/api/v1/login', async (req, res) => {
+  try {
+    const result = await db.query(
+      'SELECT * FROM users WHERE lower(user_name) = $1 AND user_password = $2',
+      [req.body.user_name, req.body.user_password]
+    );
+    console.log(result.rows);
+    if (result) {
+      console.log('valid');
+      res.status(201).json({
+        status: 'success',
+        data: {
+          users: result.rows[0]
+        }
+      });
+    } else {
+      console.log('invalid');
+      res.status(403).json({
+        status: 'error',
+        message: 'Invalid username or password'
+      });
+    }
+  } catch (err) {
+    console.log(err);
+    res.send({ err: err });
+  }
+});
 
 // Get all profiles
 app.get('/api/v1/profiles', async (req, res) => {
   try {
     const users = await db.query('SELECT user_id, user_name FROM users');
-    const results = await db.query(
-      'SELECT profile_id, profile_name, profiles.user_id, users.user_name, profile_public FROM users, profiles'
-    );
+    const results = await db.query('SELECT * FROM profiles');
     const bosses = await db.query('SELECT * FROM bosses');
     // console.log(results);
     res.status(200).json({
@@ -84,7 +127,7 @@ app.get('/api/v1/profiles/user/:id', async (req, res) => {
       [req.params.id]
     );
     const results = await db.query(
-      'SELECT profile_id, profile_name, profiles.user_id, users.user_name, profile_public FROM users, profiles WHERE profiles.user_id = $1',
+      'SELECT * FROM profiles WHERE profiles.user_id = $1',
       [req.params.id]
     );
     const bosses = await db.query('SELECT * FROM bosses');
@@ -153,6 +196,31 @@ app.delete('/api/v1/profiles/:id', async (req, res) => {
 
     res.status(204).json({
       status: 'success'
+    });
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+// Create a boss
+app.post('/api/v1/profiles/:id', async (req, res) => {
+  try {
+    const results = await db.query(
+      'INSERT INTO bosses(profile_id, boss_name, attempts, notes, completed) VALUES($1, $2, $3, $4, $5) RETURNING *',
+      [
+        req.body.profile_id,
+        req.body.boss_name,
+        req.body.attempts,
+        req.body.notes,
+        req.body.completed
+      ]
+    );
+    console.log(results);
+    res.status(201).json({
+      status: 'success',
+      data: {
+        boss: results.rows[0]
+      }
     });
   } catch (err) {
     console.log(err);

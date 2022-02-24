@@ -28,7 +28,8 @@ function Header() {
 
   const navYour = e => {
     e.preventDefault();
-    navigate('/profiles/user/:id');
+
+    navigate(`/profiles/user/${session}`);
   };
 
   const navRegister = e => {
@@ -43,6 +44,7 @@ function Header() {
 
   useEffect(() => {
     setModalOpen(false);
+    // setSession(true);
   }, [Header]);
 
   return (
@@ -84,7 +86,7 @@ function Header() {
               text="Home"
               onClick={e => navHome(e)}
             />
-            {session ? (
+            {session !== -1 ? (
               <>
                 <HeaderButton
                   Icon={DocumentAddIcon}
@@ -102,7 +104,7 @@ function Header() {
                   Icon={LogoutIcon}
                   text="Log Out"
                   onClick={e => {
-                    setSession(false);
+                    setSession(-1);
                     navHome(e);
                   }}
                 />

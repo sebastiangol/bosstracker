@@ -1,16 +1,56 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import PlaythroughsAPI from '../apis/PlaythroughsAPI';
 import { PlaythroughsContext } from '../context/PlaythroughsContext';
 import Header from './Header';
 
 function NewPlaythrough() {
-  const { search, setSearch, loggedIn, setLoggedIn, modalOpen, setModalOpen } =
-    useContext(PlaythroughsContext);
+  const {
+    search,
+    setSearch,
+    loggedIn,
+    setLoggedIn,
+    modalOpen,
+    setModalOpen,
+    session,
+    setSession
+  } = useContext(PlaythroughsContext);
   const [isPublic, setIsPublic] = useState(true);
   const [name, setName] = useState('');
+  const [missing, setMissing] = useState('');
+  let navigate = useNavigate();
+
+  const createNew = async e => {
+    e.preventDefault();
+    // setInputValue(newValue.replace(" ", ""));
+    if (!name.trim()) {
+      console.log('You must enter a playthrough name');
+      setMissing('You must enter a playthrough name');
+      return;
+    }
+
+    try {
+      const response = await PlaythroughsAPI.post('/', {
+        user_id: session,
+        profile_name: name,
+        profile_public: isPublic
+      });
+      console.log(response);
+      console.log('Success! The playthrough was created.');
+      navigate(`/profiles/user/${session}`);
+    } catch (err) {
+      console.log(err);
+      setMissing('Something went wrong');
+    }
+  };
   useEffect(() => {
     setIsPublic(true);
     setName('');
   }, [modalOpen]);
+
+  useEffect(() => {
+    setMissing('');
+  }, [name]);
   return (
     <div
       className={`fixed justify-center items-center left-0 top-0 h-screen w-screen ${
@@ -18,7 +58,7 @@ function NewPlaythrough() {
       }`}
     >
       <div
-        className={`fixed justify-center items-center left-0 top-0 h-screen w-screen opacity-40 bg-gray-500 ${
+        className={`fixed justify-center items-center left-0 top-0 h-screen w-screen opacity-40 bg-black ${
           modalOpen === true ? 'flex' : 'hidden'
         }`}
         onClick={() => setModalOpen(false)}
@@ -31,7 +71,13 @@ function NewPlaythrough() {
           x
         </span>
         <h2 className="text-3xl p-2">New Playthrough</h2>
-        <form action="" className="flex flex-col items-center">
+        <form
+          onSubmit={e => {
+            createNew(e);
+          }}
+          action=""
+          className="flex flex-col items-center"
+        >
           <input
             type="text"
             placeholder="Playthrough Name"
@@ -75,7 +121,10 @@ function NewPlaythrough() {
               Private
             </span>
           </div>
-          <div className="normal-button">Create Playthrough</div>
+          <p className="text-red-500">{missing}</p>
+          <button type="submit" className="normal-button">
+            Create Playthrough
+          </button>
         </form>
       </div>
     </div>

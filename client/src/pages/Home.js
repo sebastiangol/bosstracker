@@ -6,10 +6,19 @@ import NewPlaythrough from '../components/NewPlaythrough';
 import { PlaythroughsContext } from '../context/PlaythroughsContext';
 
 function Home() {
-  const { modalOpen, setModalOpen } = useContext(PlaythroughsContext);
+  const {
+    modalOpen,
+    setModalOpen,
+    session,
+    accountCreated,
+    setAccountCreated
+  } = useContext(PlaythroughsContext);
 
   useEffect(() => {
     setModalOpen(false);
+    console.log('HOME SESSION:');
+    console.log(session);
+    setAccountCreated('');
   }, [Home]);
 
   return (

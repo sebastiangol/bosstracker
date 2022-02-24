@@ -81,6 +81,8 @@ function Feed(props) {
                   id={playthrough.profile_id}
                   name={playthrough.profile_name}
                   creator={playthrough.user_id}
+                  isPublic={playthrough.profile_public}
+                  location="home"
                 />
               )
           )
