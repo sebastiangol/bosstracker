@@ -1,4 +1,7 @@
 # Boss Tracker
+This website is deployed using vercel: https://bosstracker.vercel.app/
+## BACKEND NOT DEPLOYED YET as of 25/02/2022
+
 Application for tracking video game boss progress, using React/TailwindCSS for the frontend and PostgreSQL/Node.js/Express for the backend.
 
 Project started on 13/02/2022. Deadline: 24/02/2022
