@@ -49,6 +49,16 @@ The "Create one!" button will open the New Playthrough modal if they are logged 
 ### Register Page
 ![image](https://user-images.githubusercontent.com/75766182/155228955-6c1f7b91-ed02-4c45-9791-f42f221f43b9.png)
 
+### Your Playthroughs Page
+![image](https://user-images.githubusercontent.com/75766182/155716397-0fb7c592-66ee-43e2-a958-d7953aa70052.png)
+
+### Detailed Playthrough Page
+![image](https://user-images.githubusercontent.com/75766182/155716717-3ff8ac38-d3e2-494f-89f1-ad4a9b124830.png)
+
+### Add-Boss component on Detailed Playthrough
+![image](https://user-images.githubusercontent.com/75766182/155716621-d3cfda86-f578-4c32-abe2-dae2119727ff.png)
+* The add-boss component is visible only if the user created the playthrough being viewed
+
 ### 24/02/2022
 #### Remaining tasks
 * A more advanced login authentication (JWT)
