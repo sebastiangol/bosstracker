@@ -52,8 +52,9 @@ The "Create one!" button will open the New Playthrough modal if they are logged 
 ### Your Playthroughs Page
 ![image](https://user-images.githubusercontent.com/75766182/155716397-0fb7c592-66ee-43e2-a958-d7953aa70052.png)
 
-### Detailed Playthrough Page
+### Initial Detailed Playthrough Page
 ![image](https://user-images.githubusercontent.com/75766182/155716717-3ff8ac38-d3e2-494f-89f1-ad4a9b124830.png)
+* Improvements/additions required in the future
 
 ### Add-Boss component on Detailed Playthrough
 ![image](https://user-images.githubusercontent.com/75766182/155716621-d3cfda86-f578-4c32-abe2-dae2119727ff.png)
