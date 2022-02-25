@@ -90,28 +90,32 @@ function DetailedPlaythrough() {
                 selectedPlaythrough.user_id === user.user_id && user.user_name
             )}
           </h4>
-          <div className="flex flex-col items-center w-full">
-            <form
-              onSubmit={e => addBoss(e)}
-              className="flex justify-center items-center h-14 bg-teal-800 rounded-lg shadow-md border border-amber-400 w-fit"
-            >
-              <p className="text-2xl ml-1 w-28 font-semibold">Create a Boss</p>
-              <input
-                className="text-field w-60"
-                type="text"
-                value={name}
-                onChange={e => setName(e.target.value)}
-                placeholder="Boss Name"
-              />
-              <button
-                type="submit"
-                className="normal-button m-0 text-lg mr-1 w-28"
+          {selectedPlaythrough.user_id === session && (
+            <div className="flex flex-col items-center w-full">
+              <form
+                onSubmit={e => addBoss(e)}
+                className="flex justify-center items-center h-14 bg-teal-800 rounded-lg shadow-md border border-amber-400 w-fit"
               >
-                Create
-              </button>
-            </form>
-            <p className="text-red-500 text-lg">{missing}</p>
-          </div>
+                <p className="text-2xl ml-1 w-28 font-semibold">
+                  Create a Boss
+                </p>
+                <input
+                  className="text-field w-60"
+                  type="text"
+                  value={name}
+                  onChange={e => setName(e.target.value)}
+                  placeholder="Boss Name"
+                />
+                <button
+                  type="submit"
+                  className="normal-button m-0 text-lg mr-1 w-28"
+                >
+                  Create
+                </button>
+              </form>
+              <p className="text-red-500 text-lg">{missing}</p>
+            </div>
+          )}
         </div>
         {selectedBosses.length === 0 ? (
           <div className="flex h-[60%] justify-center items-center ">

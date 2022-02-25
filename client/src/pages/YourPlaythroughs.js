@@ -3,10 +3,11 @@ import Header from '../components/Header';
 import PlaythroughsAPI from '../apis/PlaythroughsAPI';
 import { PlaythroughsContext } from '../context/PlaythroughsContext';
 import Playthrough from '../components/Playthrough';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 function YourPlaythroughs() {
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const {
     playthroughs,
@@ -18,12 +19,15 @@ function YourPlaythroughs() {
     search,
     setSearch,
     modalOpen,
-    setModalOpen
+    setModalOpen,
+    session
   } = useContext(PlaythroughsContext);
 
   const [filteredData, setFilteredData] = useState([]);
 
   useEffect(() => {
+    id !== session &&
+      (session === -1 ? navigate('/') : navigate(`/profiles/user/${session}`));
     const fetchData = async () => {
       try {
         const response = await PlaythroughsAPI.get(`/user/${id}`);
