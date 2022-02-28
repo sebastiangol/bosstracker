@@ -78,7 +78,9 @@ app.post('/api/v1/login', async (req, res) => {
 app.get('/api/v1/profiles', async (req, res) => {
   try {
     const users = await db.query('SELECT user_id, user_name FROM users');
-    const results = await db.query('SELECT * FROM profiles');
+    const results = await db.query(
+      'SELECT users.user_name, profile_id, profiles.user_id, profile_name, profile_public FROM profiles, users WHERE users.user_id = profiles.user_id'
+    );
     const bosses = await db.query('SELECT * FROM bosses');
     // console.log(results);
     res.status(200).json({

@@ -38,17 +38,21 @@ function Feed(props) {
   useEffect(() => {
     setFilteredData(
       playthroughs?.filter(playthrough => {
-        if (search == '') {
+        if (search === '') {
           return playthrough;
         } else if (
-          playthrough.profile_name
-            .toString()
-            .toLowerCase()
-            .includes(search.toLowerCase()) ||
-          playthrough.user_name
-            .toString()
-            .toLowerCase()
-            .includes(search.toLowerCase())
+          (playthrough.profile_public &&
+            playthrough.profile_name &&
+            playthrough?.profile_name
+              .toString()
+              .toLowerCase()
+              .includes(search.toLowerCase())) ||
+          (playthrough.profile_public &&
+            playthrough.user_name &&
+            playthrough?.user_name
+              .toString()
+              .toLowerCase()
+              .includes(search.toLowerCase()))
         ) {
           return playthrough;
         }

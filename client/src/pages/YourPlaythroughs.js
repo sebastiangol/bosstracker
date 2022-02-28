@@ -28,6 +28,7 @@ function YourPlaythroughs() {
   useEffect(() => {
     id !== session &&
       (session === -1 ? navigate('/') : navigate(`/profiles/user/${session}`));
+    setSearch('');
     const fetchData = async () => {
       try {
         const response = await PlaythroughsAPI.get(`/user/${id}`);
@@ -47,17 +48,19 @@ function YourPlaythroughs() {
   useEffect(() => {
     setFilteredData(
       playthroughs?.filter(playthrough => {
-        if (search == '') {
+        if (search === '') {
           return playthrough;
         } else if (
-          playthrough.profile_name
-            .toString()
-            .toLowerCase()
-            .includes(search.toLowerCase()) ||
-          playthrough.user_name
-            .toString()
-            .toLowerCase()
-            .includes(search.toLowerCase())
+          (playthrough.profile_name &&
+            playthrough?.profile_name
+              .toString()
+              .toLowerCase()
+              .includes(search.toLowerCase())) ||
+          (playthrough.user_name &&
+            playthrough?.user_name
+              .toString()
+              .toLowerCase()
+              .includes(search.toLowerCase()))
         ) {
           return playthrough;
         }
