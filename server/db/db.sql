@@ -9,7 +9,9 @@
 -- );
 -- INSERT INTO fruits(id,name) 
 -- VALUES(DEFAULT,'Apple');
--- Yep
+-- https://www.postgresqltutorial.com/
+-- https://www.postgresql.org/docs/
+-- https://node-postgres.com/
 
 CREATE DATABASE bosstracker;
 
