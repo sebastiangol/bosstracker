@@ -8,7 +8,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Register
+// Register!
 app.post('/api/v1/register', async (req, res) => {
   try {
     // bcrypt
