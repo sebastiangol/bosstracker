@@ -229,6 +229,23 @@ app.post('/api/v1/profiles/:id', async (req, res) => {
   }
 });
 
+// Delete a boss
+app.delete('/api/v1/bosses/:id', async (req, res) => {
+  try {
+    const results = await db.query('DELETE FROM bosses WHERE boss_id = $1', [
+      req.params.id
+    ]);
+
+    console.log(req.params.id);
+    console.log(results);
+    res.status(204).json({
+      status: 'success'
+    });
+  } catch (err) {
+    console.log(err);
+  }
+});
+
 //Listen to port
 const port = process.env.PORT || 5000;
 app.listen(port, () => {

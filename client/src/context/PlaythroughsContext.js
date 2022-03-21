@@ -12,6 +12,7 @@ export const PlaythroughsContextProvider = props => {
   const [selectedPlaythrough, setSelectedPlaythrough] = useState([]);
   const [selectedBosses, setSelectedBosses] = useState([]);
   const [accountCreated, setAccountCreated] = useState('');
+  const [bossDeleted, setBossDeleted] = useState(0);
 
   return (
     <PlaythroughsContext.Provider
@@ -33,7 +34,9 @@ export const PlaythroughsContextProvider = props => {
         selectedBosses,
         setSelectedBosses,
         accountCreated,
-        setAccountCreated
+        setAccountCreated,
+        bossDeleted,
+        setBossDeleted
       }}
     >
       {props.children}
