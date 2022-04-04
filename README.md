@@ -75,6 +75,7 @@ The "Create one!" button will open the New Playthrough modal if they are logged 
 * When clicking on the dotted options button, a delete button is displayed
 ![image](https://user-images.githubusercontent.com/75766182/159369889-ea6a908b-ff1f-4300-b119-7a77c4246d6f.png)
 * Clicking on the delete button displays a popup to confirm the deletion of the boss
-![image](https://user-images.githubusercontent.com/75766182/159370055-ce8c1322-a69a-4bbe-8055-9ac0c8cc1dca.png)
+![image](https://user-images.githubusercontent.com/75766182/161641598-da636fed-cf0b-4e3c-9c4f-a95c12fbd27c.png)
+
 
 
