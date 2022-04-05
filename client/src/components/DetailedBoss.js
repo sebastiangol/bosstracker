@@ -40,7 +40,7 @@ function DetailedBoss({
             <div
               className={`${
                 bossTooltip ? 'flex' : 'hidden'
-              } transition-all duration-150 ease-in-out h-full bg-blue-300 items-center`}
+              } transition-all duration-150 ease-in-out h-full items-center`}
             >
               <div
                 className="fixed h-screen w-screen top-0 left-0 z-10"
@@ -49,7 +49,7 @@ function DetailedBoss({
               <span
                 className={`relative ${
                   bossTooltip ? 'scale-100' : 'scale-0'
-                } flex transition-all duration-150 ease-in-out cursor-pointer z-20 text-white text-lg active:text-gray-300 px-1 bg-red-800 hover:bg-red-700 active:bg-red-800 h-full items-center`}
+                } flex transition-all duration-150 ease-in-out cursor-pointer z-20 text-white text-lg active:text-gray-300 px-1 bg-red-800 hover:bg-red-700 active:bg-red-800 h-full items-center border-white border-2 rounded-md`}
                 onClick={() => {
                   setDeleteBossModal(true);
                   setBossTooltip(false);

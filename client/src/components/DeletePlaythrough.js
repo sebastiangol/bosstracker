@@ -1,8 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
-import BossesAPI from '../apis/BossesAPI';
+import PlaythroughsAPI from '../apis/PlaythroughsAPI';
 import { PlaythroughsContext } from '../context/PlaythroughsContext';
+import { useNavigate } from 'react-router-dom';
 
-function DeleteBoss({ deleteBossModal, setDeleteBossModal, id, name }) {
+function DeletePlaythrough({ deletePTModal, setDeletePTModal, id, name }) {
   const {
     search,
     setSearch,
@@ -16,14 +17,19 @@ function DeleteBoss({ deleteBossModal, setDeleteBossModal, id, name }) {
     setBossDeleted
   } = useContext(PlaythroughsContext);
 
-  const delBoss = async e => {
+  const navigate = useNavigate();
+
+  console.log(name);
+
+  const delPlaythrough = async e => {
     e.preventDefault();
     try {
-      const response = await BossesAPI.delete(`/${id}`);
+      const response = await PlaythroughsAPI.delete(`/${id}`);
       console.log(response);
       console.log('The boss was deleted.');
-      setBossDeleted(bossDeleted + 1);
-      setDeleteBossModal(false);
+      // setBossDeleted(bossDeleted + 1);
+      setDeletePTModal(false);
+      navigate(`/profiles/user/${session}`);
     } catch (err) {
       console.log(err);
     }
@@ -32,37 +38,39 @@ function DeleteBoss({ deleteBossModal, setDeleteBossModal, id, name }) {
   return (
     <div
       className={`fixed justify-center items-center left-0 top-0 h-screen w-screen ${
-        deleteBossModal === true ? 'flex' : 'hidden'
+        deletePTModal === true ? 'flex' : 'hidden'
       }`}
     >
       <div
         className={`fixed justify-center items-center left-0 top-0 h-screen w-screen opacity-40 bg-black ${
-          deleteBossModal === true ? 'flex' : 'hidden'
+          deletePTModal === true ? 'flex' : 'hidden'
         }`}
-        onClick={() => setDeleteBossModal(false)}
+        onClick={() => setDeletePTModal(false)}
       ></div>
       <div className="relative flex flex-col h-fit items-center text-center bg-teal-800 rounded-lg shadow-md border border-amber-400 scale-150">
         <span
           className="absolute font-mono text-xs right-1 cursor-pointer"
-          onClick={() => setDeleteBossModal(false)}
+          onClick={() => setDeletePTModal(false)}
         >
           x
         </span>
-        <h2 className="text-3xl p-2">Delete Boss?</h2>
-        <h3 className="p-2">Are you sure you want to delete this boss?</h3>
+        <h2 className="text-3xl p-2">Delete Playthrough?</h2>
+        <h3 className="p-2">
+          Are you sure you want to delete this playthrough?
+        </h3>
         <h4 className="pb-2">{name}</h4>
         <div className="flex justify-between">
           <button
             className="normal-button mr-1 bg-red-800 hover:bg-red-700 text-white border-white"
             onClick={e => {
-              delBoss(e);
+              delPlaythrough(e);
             }}
           >
             Delete
           </button>
           <button
             className="normal-button ml-1"
-            onClick={() => setDeleteBossModal(false)}
+            onClick={() => setDeletePTModal(false)}
           >
             Cancel
           </button>
@@ -72,4 +80,4 @@ function DeleteBoss({ deleteBossModal, setDeleteBossModal, id, name }) {
   );
 }
 
-export default DeleteBoss;
+export default DeletePlaythrough;

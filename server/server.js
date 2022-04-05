@@ -79,7 +79,7 @@ app.get('/api/v1/profiles', async (req, res) => {
   try {
     const users = await db.query('SELECT user_id, user_name FROM users');
     const results = await db.query(
-      'SELECT users.user_name, profile_id, profiles.user_id, profile_name, profile_public FROM profiles, users WHERE users.user_id = profiles.user_id'
+      'SELECT users.user_name, profile_id, profiles.user_id, profile_name, profile_public FROM profiles, users WHERE users.user_id = profiles.user_id ORDER BY profile_id ASC'
     );
     const bosses = await db.query('SELECT * FROM bosses');
     // console.log(results);
@@ -129,7 +129,7 @@ app.get('/api/v1/profiles/user/:id', async (req, res) => {
       [req.params.id]
     );
     const results = await db.query(
-      'SELECT * FROM profiles WHERE profiles.user_id = $1',
+      'SELECT * FROM profiles WHERE profiles.user_id = $1 ORDER BY profile_id ASC',
       [req.params.id]
     );
     const bosses = await db.query('SELECT * FROM bosses');
@@ -167,12 +167,12 @@ app.post('/api/v1/profiles', async (req, res) => {
   }
 });
 
-// Update a profile
+// Update a profile's publicity
 app.put('/api/v1/profiles/:id', async (req, res) => {
   try {
     const results = await db.query(
-      'UPDATE profiles SET profile_name = $1, profile_public = $2 WHERE profile_id = $3 RETURNING *',
-      [req.body.profile_name, req.body.profile_public, req.params.id]
+      'UPDATE profiles SET profile_public = $1 WHERE profile_id = $2 RETURNING *',
+      [req.body.profile_public, req.params.id]
     );
     console.log(results);
     res.status(200).json({

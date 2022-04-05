@@ -37,6 +37,7 @@ function NewPlaythrough() {
       });
       console.log(response);
       console.log('Success! The playthrough was created.');
+      setModalOpen(false);
       navigate(`/profiles/user/${session}`);
     } catch (err) {
       console.log(err);
