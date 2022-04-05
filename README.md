@@ -77,5 +77,7 @@ The "Create one!" button will open the New Playthrough modal if they are logged 
 * Clicking on the delete button displays a popup to confirm the deletion of the boss
 ![image](https://user-images.githubusercontent.com/75766182/161641598-da636fed-cf0b-4e3c-9c4f-a95c12fbd27c.png)
 
-
-
+### Update playthrough privacy and Delete playthrough functionality
+![image](https://user-images.githubusercontent.com/75766182/161721783-d0de9acc-511c-4517-8890-cfa9c0ddfa03.png)
+* The Delete Playthrough button displays a popup to confirm the deletion of the playthrough
+![image](https://user-images.githubusercontent.com/75766182/161722174-e330f01f-bbff-40ff-a247-3f845f028034.png)
