@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import LoginAPI from '../apis/LoginAPI';
 import Header from '../components/Header';
 import { PlaythroughsContext } from '../context/PlaythroughsContext';
@@ -8,6 +8,7 @@ function Login() {
   const { session, setSession, accountCreated, setAccountCreated } =
     useContext(PlaythroughsContext);
   let navigate = useNavigate();
+  let locale = useLocation()
 
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
@@ -34,7 +35,8 @@ function Login() {
         setSession(response.data.data.users.user_id);
         console.log('BELOW');
         console.log(session);
-        navigate('/');
+        console.log(locale)
+        navigate(-1);
       } else {
         console.log('invalid username or password');
         setInvalid('Invalid username or password');
@@ -45,6 +47,12 @@ function Login() {
       setInvalid('Invalid username or password');
     }
   };
+
+  useEffect(() => {
+    if (session !== -1) {
+      navigate("/")
+    } 
+  }, []);
 
   useEffect(() => {
     setMissing('');

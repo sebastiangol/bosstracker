@@ -23,6 +23,7 @@ function YourPlaythroughs() {
     session
   } = useContext(PlaythroughsContext);
 
+  const [loading, setLoading] = useState(true)
   const [filteredData, setFilteredData] = useState([]);
 
   useEffect(() => {
@@ -38,8 +39,10 @@ function YourPlaythroughs() {
         console.log(response);
         console.log(playthroughs);
         console.log(bosses);
+        setLoading(false)
       } catch (err) {
         console.log(err);
+        setLoading(false)
       }
     };
     fetchData();
@@ -71,14 +74,14 @@ function YourPlaythroughs() {
   return (
     <div>
       <Header />
-      <div className="flex flex-col items-center text-center bg-teal-800 xl:max-w-6xl mx-auto p-4 m-4 mt-24 rounded-lg shadow-md">
+      <div className="flex flex-col items-center text-center bg-teal-800 xl:max-w-6xl mx-auto p-4 m-4 mt-24 rounded-lg shadow-md min-h-[39.6rem]">
         <h2 className="text-6xl pb-6">Your Playthroughs</h2>
         <div
           className={`${
-            filteredData?.length === 0 ? 'flex' : 'grid grid-cols-2'
+            loading || playthroughs?.length === 0 || filteredData?.length === 0 ? 'flex' : 'grid grid-cols-2'
           }`}
         >
-          {filteredData?.length === 0 ? (
+          {loading ? <p className="text-3xl m-4">...loading...</p> : playthroughs?.length === 0 ? (
             <div className="flex flex-col justify-center items-center">
               <p className="text-3xl m-4">You have no playthroughs yet!</p>
               <div
@@ -87,6 +90,10 @@ function YourPlaythroughs() {
               >
                 Create one!
               </div>
+            </div>
+          ) : filteredData?.length === 0 ? (
+            <div className="flex justify-center items-center text-3xl m-4">
+              Your search found no results.
             </div>
           ) : (
             filteredData?.map(playthrough => (

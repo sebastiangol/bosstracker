@@ -5,7 +5,7 @@ import Header from '../components/Header';
 import { PlaythroughsContext } from '../context/PlaythroughsContext';
 
 function Register() {
-  const { accountCreated, setAccountCreated } = useContext(PlaythroughsContext);
+  const { accountCreated, setAccountCreated, session } = useContext(PlaythroughsContext);
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -53,6 +53,12 @@ function Register() {
 
   useEffect(() => {
     setAccountCreated('');
+  }, []);
+
+  useEffect(() => {
+    if (session !== -1) {
+      navigate("/")
+    } 
   }, []);
 
   return (

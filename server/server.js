@@ -2,6 +2,7 @@ require('dotenv').config();
 
 const express = require('express');
 const cors = require('cors');
+const bcrypt = require("bcrypt")
 const db = require('./db');
 const app = express();
 
@@ -12,14 +13,14 @@ app.use(express.json());
 app.post('/api/v1/register', async (req, res) => {
   try {
     // bcrypt
-    // const saltRound = 10;
-    // const salt = await bcrypt.genSalt(saltRound);
+    const saltRound = 10;
+    const salt = await bcrypt.genSalt(saltRound);
 
-    // const bcryptPassword = await bcrypt.hash(req.body.user_password, salt);
+    const bcryptPassword = await bcrypt.hash(req.body.user_password, salt);
 
     const results = await db.query(
       'INSERT INTO users(user_name, user_password) VALUES($1, $2) RETURNING *',
-      [req.body.user_name, req.body.user_password]
+      [req.body.user_name, bcryptPassword]
     );
     if (results) {
       console.log(results);
@@ -49,11 +50,12 @@ app.post('/api/v1/register', async (req, res) => {
 app.post('/api/v1/login', async (req, res) => {
   try {
     const result = await db.query(
-      'SELECT * FROM users WHERE lower(user_name) = $1 AND user_password = $2',
-      [req.body.user_name, req.body.user_password]
+      'SELECT * FROM users WHERE lower(user_name) = $1',
+      [req.body.user_name]
     );
     console.log(result.rows);
-    if (result) {
+    const validPassword = await bcrypt.compare(req.body.user_password, result.rows[0].user_password)
+    if (result && validPassword) {
       console.log('valid');
       res.status(201).json({
         status: 'success',

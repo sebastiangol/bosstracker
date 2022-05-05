@@ -35,7 +35,6 @@ function DetailedPlaythrough() {
   // const [completed, setCompleted] = useState(false);
   const [missing, setMissing] = useState('');
   const [bossAdded, setBossAdded] = useState(0);
-  // const [bossTooltip, setBossTooltip] = useState(false);
   const [isPublic, setIsPublic] = useState(true);
   const [profileName, setProfileName] = useState('');
   const [deletePTModal, setDeletePTModal] = useState(false);
@@ -174,7 +173,7 @@ function DetailedPlaythrough() {
                 onSubmit={e => addBoss(e)}
                 className="flex justify-center items-center h-14 bg-teal-800 rounded-lg shadow-md border border-amber-400 w-fit"
               >
-                <p className="text-2xl ml-1 w-28 font-semibold">
+                <p className="text-xl ml-1 w-[8.4rem] font-semibold">
                   Create a Boss
                 </p>
                 <input

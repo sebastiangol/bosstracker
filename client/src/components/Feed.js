@@ -16,6 +16,7 @@ function Feed(props) {
   } = useContext(PlaythroughsContext);
 
   const [filteredData, setFilteredData] = useState([]);
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     setSearch('');
@@ -28,8 +29,10 @@ function Feed(props) {
         console.log(response);
         console.log(playthroughs);
         console.log(bosses);
+        setLoading(false);
       } catch (err) {
         console.log(err);
+        setLoading(false);
       }
     };
     fetchData();
@@ -64,11 +67,11 @@ function Feed(props) {
     <div className="flex flex-col items-center text-center bg-teal-800 xl:max-w-6xl mx-auto p-4 m-4 mt-0 rounded-lg shadow-md">
       <h2 className="text-6xl pb-6">Public Playthroughs</h2>
       <div
-        className={`${
-          filteredData?.length === 0 ? 'flex' : 'grid grid-cols-2'
-        }`}
-      >
-        {playthroughs?.length === 0 ? (
+          className={`${
+            loading || playthroughs?.length === 0 || filteredData?.length === 0 ? 'flex' : 'grid grid-cols-2'
+          }`}
+        >
+        {loading ? <p className="text-3xl m-4">...loading...</p> : playthroughs?.length === 0 ? (
           <div className="flex justify-center items-center text-3xl m-4">
             No playthroughs were found.
           </div>
