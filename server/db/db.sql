@@ -45,6 +45,8 @@ INSERT INTO profiles (user_id, profile_name, profile_public) VALUES (1, 'ng+7', 
 INSERT INTO profiles (user_id, profile_name, profile_public) VALUES (1, 'Best character ever!', true);
 INSERT INTO profiles (user_id, profile_name, profile_public) VALUES (1, 'cool', false);
 INSERT INTO profiles (user_id, profile_name, profile_public) VALUES (1, 'super duper fantastic run', true);
+INSERT INTO profiles (user_id, profile_name, profile_public) VALUES (2, 'Last one.', true);
+INSERT INTO profiles (user_id, profile_name, profile_public) VALUES (2, 'actual last one', false);
 
 INSERT INTO bosses (profile_id, boss_name, attempts, notes, completed) VALUES (1, 'boss1', 3, 'do something', true);
 INSERT INTO bosses (profile_id, boss_name, attempts, notes, completed) VALUES (1, 'boss2', 2, 'Don''t do this thing, do that', true);
@@ -76,3 +78,10 @@ INSERT INTO bosses (profile_id, boss_name, attempts, notes, completed) VALUES (6
 INSERT INTO bosses (profile_id, boss_name, attempts, notes, completed) VALUES (6, 'Ornstein and Jack', 2, 'Separate', false);
 INSERT INTO bosses (profile_id, boss_name, attempts, notes, completed) VALUES (6, 'lost knight ian', 9, 'He is at this location', true);
 INSERT INTO bosses (profile_id, boss_name, attempts, notes, completed) VALUES (6, 'The Dark Lord of Something', 5, 'I can''t see', false);
+
+INSERT INTO bosses (profile_id, boss_name, attempts, notes, completed) VALUES (7, 'scary sludge thing', 4, 'Burn it.', true);
+INSERT INTO bosses (profile_id, boss_name, attempts, notes, completed) VALUES (7, 'BIG knight', 9, 'dodge and then dodge the thing', true);
+
+INSERT INTO bosses (profile_id, boss_name, attempts, notes, completed) VALUES (8, 'The Sludge', 48, '', false);
+INSERT INTO bosses (profile_id, boss_name, attempts, notes, completed) VALUES (8, 'The Knight', 99, '', false);
+INSERT INTO bosses (profile_id, boss_name, attempts, notes, completed) VALUES (8, 'Unidentified Object', 72, 'dont care anymore', false);

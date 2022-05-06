@@ -39,6 +39,7 @@ function DetailedPlaythrough() {
   const [profileName, setProfileName] = useState('');
   const [deletePTModal, setDeletePTModal] = useState(false);
   const [publicCount, setPublicCount] = useState(0);
+  const [loading, setLoading] = useState(true);
 
   // Fetch selected playthrough
   useEffect(() => {
@@ -50,7 +51,9 @@ function DetailedPlaythrough() {
         const responseUsers = await PlaythroughsAPI.get('/');
         setUsers(responseUsers.data.data.users);
         setIsPublic(response.data.data.profile.profile_public);
+        setLoading(false)
       } catch (err) {
+        setLoading(false)
         console.log(err);
       }
     };
@@ -194,7 +197,7 @@ function DetailedPlaythrough() {
             </div>
           )}
         </div>
-        {selectedBosses.length === 0 ? (
+        {loading ? <h3 className="text-3xl">...loading...</h3> : selectedBosses.length === 0 ? (
           <div className="flex h-[60%] justify-center items-center mt-6">
             <h3 className="text-3xl">No bosses yet!</h3>
           </div>
