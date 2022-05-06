@@ -1,4 +1,5 @@
 # Boss Tracker
+### As of 06/05/2022 - CORS error on the deployed application
 This application's frontend is deployed using vercel: https://bosstracker.vercel.app/
 
 The backend is deployed on heroku.
