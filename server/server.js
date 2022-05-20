@@ -27,21 +27,21 @@ app.post('/api/v1/register', async (req, res) => {
       res.status(201).json({
         status: 'success',
         data: {
-          users: results.rows[0]
-        }
+          users: results.rows[0],
+        },
       });
     } else {
       console.log('This username already exists');
       res.status(403).json({
         status: 'error',
-        message: 'This username already exists'
+        message: 'This username already exists',
       });
     }
   } catch (err) {
     console.log(err);
     res.status(403).json({
       status: 'error',
-      message: 'This username already exists'
+      message: 'This username already exists',
     });
   }
 });
@@ -54,20 +54,23 @@ app.post('/api/v1/login', async (req, res) => {
       [req.body.user_name]
     );
     console.log(result.rows);
-    const validPassword = await bcryptjs.compare(req.body.user_password, result.rows[0].user_password)
+    const validPassword = await bcryptjs.compare(
+      req.body.user_password,
+      result.rows[0].user_password
+    );
     if (result && validPassword) {
       console.log('valid');
       res.status(201).json({
         status: 'success',
         data: {
-          users: result.rows[0]
-        }
+          users: result.rows[0],
+        },
       });
     } else {
       console.log('invalid');
       res.status(403).json({
         status: 'error',
-        message: 'Invalid username or password'
+        message: 'Invalid username or password',
       });
     }
   } catch (err) {
@@ -83,7 +86,7 @@ app.get('/api/v1/profiles', async (req, res) => {
     const results = await db.query(
       'SELECT users.user_name, profile_id, profiles.user_id, profile_name, profile_public FROM profiles, users WHERE users.user_id = profiles.user_id ORDER BY profile_id ASC'
     );
-    const bosses = await db.query('SELECT * FROM bosses');
+    const bosses = await db.query('SELECT * FROM bosses ORDER BY boss_id ASC');
     // console.log(results);
     res.status(200).json({
       status: 'success',
@@ -91,8 +94,8 @@ app.get('/api/v1/profiles', async (req, res) => {
       data: {
         users: users.rows,
         profiles: results.rows,
-        bosses: bosses.rows
-      }
+        bosses: bosses.rows,
+      },
     });
   } catch (err) {
     console.log(err);
@@ -107,7 +110,7 @@ app.get('/api/v1/profiles/:id', async (req, res) => {
       [req.params.id]
     );
     const bosses = await db.query(
-      'SELECT * FROM bosses WHERE profile_id = $1',
+      'SELECT * FROM bosses WHERE profile_id = $1 ORDER BY boss_id ASC',
       [req.params.id]
     );
     res.status(200).json({
@@ -115,8 +118,8 @@ app.get('/api/v1/profiles/:id', async (req, res) => {
       results: results.rows.length,
       data: {
         profile: results.rows[0],
-        bosses: bosses.rows
-      }
+        bosses: bosses.rows,
+      },
     });
   } catch (err) {
     console.log(err);
@@ -134,7 +137,7 @@ app.get('/api/v1/profiles/user/:id', async (req, res) => {
       'SELECT * FROM profiles WHERE profiles.user_id = $1 ORDER BY profile_id ASC',
       [req.params.id]
     );
-    const bosses = await db.query('SELECT * FROM bosses');
+    const bosses = await db.query('SELECT * FROM bosses ORDER BY boss_id ASC');
     // console.log(results);
     res.status(200).json({
       status: 'success',
@@ -142,8 +145,8 @@ app.get('/api/v1/profiles/user/:id', async (req, res) => {
       data: {
         users: users.rows,
         profiles: results.rows,
-        bosses: bosses.rows
-      }
+        bosses: bosses.rows,
+      },
     });
   } catch (err) {
     console.log(err);
@@ -161,8 +164,8 @@ app.post('/api/v1/profiles', async (req, res) => {
     res.status(201).json({
       status: 'success',
       data: {
-        profiles: results.rows
-      }
+        profiles: results.rows,
+      },
     });
   } catch (err) {
     console.log(err);
@@ -180,8 +183,8 @@ app.put('/api/v1/profiles/:id', async (req, res) => {
     res.status(200).json({
       status: 'success',
       data: {
-        profiles: results.rows[0]
-      }
+        profiles: results.rows[0],
+      },
     });
   } catch (err) {
     console.log(err);
@@ -199,7 +202,7 @@ app.delete('/api/v1/profiles/:id', async (req, res) => {
     console.log(req.params.id);
 
     res.status(204).json({
-      status: 'success'
+      status: 'success',
     });
   } catch (err) {
     console.log(err);
@@ -216,15 +219,51 @@ app.post('/api/v1/profiles/:id', async (req, res) => {
         req.body.boss_name,
         req.body.attempts,
         req.body.notes,
-        req.body.completed
+        req.body.completed,
       ]
     );
     console.log(results);
     res.status(201).json({
       status: 'success',
       data: {
-        boss: results.rows[0]
-      }
+        boss: results.rows[0],
+      },
+    });
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+// Update boss attempts
+app.put('/api/v1/bosses/:id/attempts', async (req, res) => {
+  try {
+    const results = await db.query(
+      'UPDATE bosses SET attempts = $1 WHERE boss_id = $2 RETURNING *',
+      [req.body.attempts, req.params.id]
+    );
+    res.status(200).json({
+      status: 'success',
+      data: {
+        boss: results.rows[0],
+      },
+    });
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+// Update boss completed
+app.put('/api/v1/bosses/:id/completed', async (req, res) => {
+  try {
+    const results = await db.query(
+      'UPDATE bosses SET completed = $1 WHERE boss_id = $2 RETURNING *',
+      [req.body.completed, req.params.id]
+    );
+    res.status(200).json({
+      status: 'success',
+      data: {
+        boss: results.rows[0],
+      },
     });
   } catch (err) {
     console.log(err);
@@ -235,13 +274,13 @@ app.post('/api/v1/profiles/:id', async (req, res) => {
 app.delete('/api/v1/bosses/:id', async (req, res) => {
   try {
     const results = await db.query('DELETE FROM bosses WHERE boss_id = $1', [
-      req.params.id
+      req.params.id,
     ]);
 
     console.log(req.params.id);
     console.log(results);
     res.status(204).json({
-      status: 'success'
+      status: 'success',
     });
   } catch (err) {
     console.log(err);

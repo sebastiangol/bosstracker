@@ -24,7 +24,7 @@ function DetailedPlaythrough() {
     setModalOpen,
     session,
     bossDeleted,
-    setBossDeleted
+    setBossDeleted,
   } = useContext(PlaythroughsContext);
 
   const [selectedPlaythrough, setSelectedPlaythrough] = useState([]);
@@ -40,6 +40,7 @@ function DetailedPlaythrough() {
   const [deletePTModal, setDeletePTModal] = useState(false);
   const [publicCount, setPublicCount] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [refresh, setRefresh] = useState(0);
 
   // Fetch selected playthrough
   useEffect(() => {
@@ -51,19 +52,19 @@ function DetailedPlaythrough() {
         const responseUsers = await PlaythroughsAPI.get('/');
         setUsers(responseUsers.data.data.users);
         setIsPublic(response.data.data.profile.profile_public);
-        setLoading(false)
+        setLoading(false);
       } catch (err) {
-        setLoading(false)
+        setLoading(false);
         console.log(err);
       }
     };
     fetchData();
     console.log(users);
     console.log(selectedPlaythrough);
-  }, [bossAdded, bossDeleted]);
+  }, [bossAdded, bossDeleted, refresh]);
 
   // Add boss to playthrough
-  const addBoss = async e => {
+  const addBoss = async (e) => {
     e.preventDefault();
     if (!name.trim()) {
       console.log('You must enter a boss name');
@@ -77,7 +78,7 @@ function DetailedPlaythrough() {
         boss_name: name,
         attempts: 0,
         notes: '',
-        completed: false
+        completed: false,
       });
       console.log(response);
       console.log('Success! The boss was created.');
@@ -95,7 +96,7 @@ function DetailedPlaythrough() {
       console.log(isPublic);
       try {
         const response = await PlaythroughsAPI.put(`/${id}`, {
-          profile_public: isPublic
+          profile_public: isPublic,
         });
         console.log(isPublic);
         console.log(response);
@@ -118,20 +119,20 @@ function DetailedPlaythrough() {
   return (
     <div>
       <Header />
-      <div className="flex flex-col items-center text-center bg-teal-800 xl:max-w-6xl mx-auto p-4 m-4 mt-24 rounded-lg shadow-md min-h-[39.6rem] ">
-        <div className="w-full">
-          <h2 className="text-6xl pb-4">{selectedPlaythrough.profile_name}</h2>
-          <h4 className="pb-4 text-3xl">
+      <div className='flex flex-col items-center text-center bg-teal-800 xl:max-w-6xl mx-auto p-4 m-4 mt-24 rounded-lg shadow-md min-h-[39.6rem] '>
+        <div className='w-full'>
+          <h2 className='text-6xl pb-4'>{selectedPlaythrough.profile_name}</h2>
+          <h4 className='pb-4 text-3xl'>
             By{' '}
             {users?.map(
-              user =>
+              (user) =>
                 selectedPlaythrough.user_id === user.user_id && user.user_name
             )}
           </h4>
           {selectedPlaythrough.user_id === session && (
-            <div className="flex flex-col items-center w-full">
-              <div className="flex justify-between w-[32rem] border-b border-amber-400 mb-6">
-                <div className="flex justify-center items-center">
+            <div className='flex flex-col items-center w-full'>
+              <div className='flex justify-between w-[32rem] border-b border-amber-400 mb-6'>
+                <div className='flex justify-center items-center'>
                   <span
                     className={`transition-all duration-200 ease-out  ${
                       isPublic
@@ -142,7 +143,7 @@ function DetailedPlaythrough() {
                     Public
                   </span>
                   <div
-                    className="flex relative items-center justify-start bg-teal-900  border border-amber-400 w-16 m-2 h-6 rounded-3xl"
+                    className='flex relative items-center justify-start bg-teal-900  border border-amber-400 w-16 m-2 h-6 rounded-3xl'
                     onClick={() => setIsPublic(!isPublic)}
                   >
                     <div
@@ -173,37 +174,39 @@ function DetailedPlaythrough() {
                 </div>
               </div>
               <form
-                onSubmit={e => addBoss(e)}
-                className="flex justify-center items-center h-14 bg-teal-800 rounded-lg shadow-md border border-amber-400 w-fit"
+                onSubmit={(e) => addBoss(e)}
+                className='flex justify-center items-center h-14 bg-teal-800 rounded-lg shadow-md border border-amber-400 w-fit'
               >
-                <p className="text-xl ml-1 w-[8.4rem] font-semibold">
+                <p className='text-xl ml-1 w-[8.4rem] font-semibold'>
                   Create a Boss
                 </p>
                 <input
-                  className="text-field w-60"
-                  type="text"
+                  className='text-field w-60'
+                  type='text'
                   value={name}
-                  onChange={e => setName(e.target.value)}
-                  placeholder="Boss Name"
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder='Boss Name'
                 />
                 <button
-                  type="submit"
-                  className="normal-button m-0 text-lg mr-1 w-28"
+                  type='submit'
+                  className='normal-button m-0 text-lg mr-1 w-28'
                 >
                   Create
                 </button>
               </form>
-              <p className="text-red-500 text-lg">{missing}</p>
+              <p className='text-red-500 text-lg'>{missing}</p>
             </div>
           )}
         </div>
-        {loading ? <h3 className="text-3xl">...loading...</h3> : selectedBosses.length === 0 ? (
-          <div className="flex h-[60%] justify-center items-center mt-6">
-            <h3 className="text-3xl">No bosses yet!</h3>
+        {loading ? (
+          <h3 className='text-3xl'>...loading...</h3>
+        ) : selectedBosses.length === 0 ? (
+          <div className='flex h-[60%] justify-center items-center mt-6'>
+            <h3 className='text-3xl'>No bosses yet!</h3>
           </div>
         ) : (
-          <div className="flex flex-col w-[33rem] mt-6">
-            {selectedBosses?.map(boss => (
+          <div className='flex flex-col w-[33rem] mt-6'>
+            {selectedBosses?.map((boss) => (
               <DetailedBoss
                 key={boss.boss_id}
                 id={boss.boss_id}
@@ -212,6 +215,8 @@ function DetailedPlaythrough() {
                 completed={boss.completed}
                 selectedPlaythrough={selectedPlaythrough}
                 session={session}
+                refresh={refresh}
+                setRefresh={setRefresh}
               />
             ))}
           </div>

@@ -14,14 +14,14 @@ function DeletePlaythrough({ deletePTModal, setDeletePTModal, id, name }) {
     session,
     setSession,
     bossDeleted,
-    setBossDeleted
+    setBossDeleted,
   } = useContext(PlaythroughsContext);
 
   const navigate = useNavigate();
 
   console.log(name);
 
-  const delPlaythrough = async e => {
+  const delPlaythrough = async (e) => {
     e.preventDefault();
     try {
       const response = await PlaythroughsAPI.delete(`/${id}`);
@@ -47,29 +47,29 @@ function DeletePlaythrough({ deletePTModal, setDeletePTModal, id, name }) {
         }`}
         onClick={() => setDeletePTModal(false)}
       ></div>
-      <div className="relative flex flex-col h-fit items-center text-center bg-teal-800 rounded-lg shadow-md border border-amber-400 scale-150">
+      <div className='relative flex flex-col h-fit items-center text-center bg-teal-800 rounded-lg shadow-md border border-amber-400 scale-150'>
         <span
-          className="absolute font-mono text-xs right-1 cursor-pointer"
+          className='absolute font-mono text-xs right-1 cursor-pointer'
           onClick={() => setDeletePTModal(false)}
         >
           x
         </span>
-        <h2 className="text-3xl p-2">Delete Playthrough?</h2>
-        <h3 className="p-2">
+        <h2 className='text-3xl p-2'>Delete Playthrough?</h2>
+        <h3 className='p-2'>
           Are you sure you want to delete this playthrough?
         </h3>
-        <h4 className="pb-2">{name}</h4>
-        <div className="flex justify-between">
+        <h4 className='pb-2'>{name}</h4>
+        <div className='flex justify-between'>
           <button
-            className="normal-button mr-1 bg-red-800 hover:bg-red-700 text-white border-white"
-            onClick={e => {
+            className='normal-button mr-1 bg-red-800 hover:bg-red-700 text-white border-white'
+            onClick={(e) => {
               delPlaythrough(e);
             }}
           >
             Delete
           </button>
           <button
-            className="normal-button ml-1"
+            className='normal-button ml-1'
             onClick={() => setDeletePTModal(false)}
           >
             Cancel
