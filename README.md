@@ -86,3 +86,8 @@ The "Create one!" button will open the New Playthrough modal if they are logged 
 ![image](https://user-images.githubusercontent.com/75766182/169426310-4f1605c5-c5aa-4c72-b88c-dc460666079e.png)
 * The plus and minus buttons will add or subtract 1 from the attempts count
 * Clicking on the Victory/Pending button will change the status from one to the other (Pending to Victory, Victory to Pending)
+
+### Login page - Register & Guest buttons
+![image](https://user-images.githubusercontent.com/75766182/169707750-fbc3d042-db0e-42f6-a91b-8b1bcc89e8c8.png)
+* The Register button redirects to the Register page
+* The Login as Guest button logs in the user with the guest account
