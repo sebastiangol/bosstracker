@@ -8,14 +8,14 @@ function Login() {
   const { session, setSession, accountCreated, setAccountCreated } =
     useContext(PlaythroughsContext);
   let navigate = useNavigate();
-  let locale = useLocation()
+  let locale = useLocation();
 
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [invalid, setInvalid] = useState('');
   const [missing, setMissing] = useState('');
 
-  const loginUser = async e => {
+  const loginUser = async (e) => {
     e.preventDefault();
     setAccountCreated('');
     // setInputValue(newValue.replace(" ", ""));
@@ -28,15 +28,15 @@ function Login() {
     try {
       const response = await LoginAPI.post('/', {
         user_name: name,
-        user_password: password
+        user_password: password,
       });
       console.log(response.data.data.users.user_id);
       if (response.data.data.users.length !== 0) {
         setSession(response.data.data.users.user_id);
         console.log('BELOW');
         console.log(session);
-        console.log(locale)
-        navigate(-1);
+        console.log(locale);
+        navigate('/');
       } else {
         console.log('invalid username or password');
         setInvalid('Invalid username or password');
@@ -48,10 +48,21 @@ function Login() {
     }
   };
 
+  const navRegister = (e) => {
+    e.preventDefault();
+    navigate('/register');
+  };
+
+  const loginGuest = (e) => {
+    e.preventDefault();
+    setSession(2);
+    navigate('/');
+  };
+
   useEffect(() => {
     if (session !== -1) {
-      navigate("/")
-    } 
+      navigate('/');
+    }
   }, []);
 
   useEffect(() => {
@@ -60,41 +71,55 @@ function Login() {
   }, [name, password]);
 
   return (
-    <div className="flex flex-col justify-center items-center fixed h-screen w-screen">
+    <div className='flex flex-col justify-center items-center fixed h-screen w-screen'>
       <Header />
-      <div>
-        <div className="flex flex-col h-fit items-center text-center bg-teal-800 rounded-lg shadow-md border border-amber-400 scale-150">
-          <h2 className="text-3xl p-2">Log In</h2>
-          <p className="text-green-300">{accountCreated}</p>
-          <form
-            onSubmit={e => loginUser(e)}
-            action=""
-            className="flex flex-col items-center"
+      <div className='flex flex-col h-fit items-center text-center bg-teal-800 rounded-lg shadow-md border border-amber-400 scale-150'>
+        <h2 className='text-3xl p-2'>Log In</h2>
+        <p className='text-green-300'>{accountCreated}</p>
+        <form
+          onSubmit={(e) => loginUser(e)}
+          action=''
+          className='flex flex-col items-center'
+        >
+          <input
+            type='text'
+            placeholder='User Name'
+            value={name}
+            onChange={(e) => {
+              setName(e.target.value);
+            }}
+            className='text-field mb-1'
+          />
+          <input
+            type='password'
+            placeholder='Password'
+            value={password}
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+            className='text-field mb-3'
+          />
+          <p className='text-red-500'>{missing}</p>
+          <p className='text-red-500'>{invalid}</p>
+          <button type='submit' className='normal-button'>
+            Log In
+          </button>
+        </form>
+        <p className='text-sm'>Don't have an account?</p>
+        <div className='flex justify-evenly items-center w-full'>
+          <button
+            className='normal-button text-xs h-8 w-[4.84rem]'
+            onClick={(e) => navRegister(e)}
           >
-            <input
-              type="text"
-              placeholder="User Name"
-              value={name}
-              onChange={e => {
-                setName(e.target.value);
-              }}
-              className="text-field mb-1"
-            />
-            <input
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={e => {
-                setPassword(e.target.value);
-              }}
-              className="text-field mb-3"
-            />
-            <p className="text-red-500">{missing}</p>
-            <p className="text-red-500">{invalid}</p>
-            <button type="submit" className="normal-button">
-              Log In
-            </button>
-          </form>
+            Register
+          </button>
+          <p>Or</p>
+          <button
+            className='normal-button text-xs h-8 w-[4.84rem]'
+            onClick={(e) => loginGuest(e)}
+          >
+            Login as Guest
+          </button>
         </div>
       </div>
     </div>
