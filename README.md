@@ -1,5 +1,4 @@
 # Boss Tracker
-### As of 06/05/2022 - CORS error on the deployed application
 This application's frontend is deployed using vercel: https://bosstracker.vercel.app/
 
 The backend is deployed on heroku.
@@ -82,3 +81,8 @@ The "Create one!" button will open the New Playthrough modal if they are logged 
 ![image](https://user-images.githubusercontent.com/75766182/161721783-d0de9acc-511c-4517-8890-cfa9c0ddfa03.png)
 * The Delete Playthrough button displays a popup to confirm the deletion of the playthrough
 ![image](https://user-images.githubusercontent.com/75766182/161722174-e330f01f-bbff-40ff-a247-3f845f028034.png)
+
+### Update boss Attempt count and Completed status functionality
+![image](https://user-images.githubusercontent.com/75766182/169426310-4f1605c5-c5aa-4c72-b88c-dc460666079e.png)
+* The plus and minus buttons will add or subtract 1 from the attempts count
+* Clicking on the Victory/Pending button will change the status from one to the other (Pending to Victory, Victory to Pending)
