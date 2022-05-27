@@ -24,6 +24,6 @@
   }
 
   .text-field {
-    @apply block bg-teal-900 border-teal-900 rounded-md w-max h-10 pl-1 text-xl focus:ring-amber-400 focus:border-amber-400 m-4 placeholder:text-center text-center;
+    @apply block bg-teal-900 border-teal-900 rounded-md w-max h-10 pl-1 text-xl xs:text-base focus:ring-amber-400 focus:border-amber-400 m-4 placeholder:text-center text-center;
   }
 }

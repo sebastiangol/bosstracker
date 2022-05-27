@@ -54,14 +54,14 @@ function DeletePlaythrough({ deletePTModal, setDeletePTModal, id, name }) {
         >
           x
         </span>
-        <h2 className='text-3xl p-2'>Delete Playthrough?</h2>
-        <h3 className='p-2'>
+        <h2 className='text-3xl 2xs:text-2xl p-2'>Delete Playthrough?</h2>
+        <h3 className='p-2 2xs:text-xs'>
           Are you sure you want to delete this playthrough?
         </h3>
         <h4 className='pb-2'>{name}</h4>
         <div className='flex justify-between'>
           <button
-            className='normal-button mr-1 bg-red-800 hover:bg-red-700 text-white border-white'
+            className='normal-button 2xs:text-xs mr-1 bg-red-800 hover:bg-red-700 text-white border-white'
             onClick={(e) => {
               delPlaythrough(e);
             }}
@@ -69,7 +69,7 @@ function DeletePlaythrough({ deletePTModal, setDeletePTModal, id, name }) {
             Delete
           </button>
           <button
-            className='normal-button ml-1'
+            className='normal-button 2xs:text-xs ml-1'
             onClick={() => setDeletePTModal(false)}
           >
             Cancel

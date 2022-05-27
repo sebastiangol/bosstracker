@@ -119,10 +119,12 @@ function DetailedPlaythrough() {
   return (
     <div>
       <Header />
-      <div className='flex flex-col items-center text-center bg-teal-800 xl:max-w-6xl mx-auto p-4 m-4 mt-24 rounded-lg shadow-md min-h-[39.6rem] '>
+      <div className='flex flex-col items-center text-center bg-teal-800 xl:max-w-6xl mx-auto p-4 m-4 pt-24 xl:pt-16 xl:pb-32 rounded-lg shadow-md min-h-[calc(100vh-2rem)] '>
         <div className='w-full'>
-          <h2 className='text-6xl pb-4'>{selectedPlaythrough.profile_name}</h2>
-          <h4 className='pb-4 text-3xl'>
+          <h2 className='text-6xl xl:text-5xl xs:text-4xl 2xs:text-3xl pb-4 xs:pb-2'>
+            {selectedPlaythrough.profile_name}
+          </h2>
+          <h4 className='pb-4 xs:pb-2 text-3xl xs:text-2xl'>
             By{' '}
             {users?.map(
               (user) =>
@@ -131,7 +133,7 @@ function DetailedPlaythrough() {
           </h4>
           {selectedPlaythrough.user_id === session && (
             <div className='flex flex-col items-center w-full'>
-              <div className='flex justify-between w-[32rem] border-b border-amber-400 mb-6'>
+              <div className='flex justify-between w-[32rem] xs:w-full border-b border-amber-400 mb-6 xs:text-sm'>
                 <div className='flex justify-center items-center'>
                   <span
                     className={`transition-all duration-200 ease-out  ${
@@ -175,13 +177,13 @@ function DetailedPlaythrough() {
               </div>
               <form
                 onSubmit={(e) => addBoss(e)}
-                className='flex justify-center items-center h-14 bg-teal-800 rounded-lg shadow-md border border-amber-400 w-fit'
+                className='flex justify-center items-center h-14 bg-teal-800 rounded-lg shadow-md border border-amber-400 w-fit '
               >
-                <p className='text-xl ml-1 w-[8.4rem] font-semibold'>
+                <p className='text-xl xs:text-base ml-1 w-[8.4rem] xs:w-[4.6rem] font-semibold'>
                   Create a Boss
                 </p>
                 <input
-                  className='text-field w-60'
+                  className='text-field w-60 xs:w-28'
                   type='text'
                   value={name}
                   onChange={(e) => setName(e.target.value)}
@@ -189,7 +191,7 @@ function DetailedPlaythrough() {
                 />
                 <button
                   type='submit'
-                  className='normal-button m-0 text-lg mr-1 w-28'
+                  className='normal-button m-0 text-lg xs:text-base mr-1 w-28 xs:w-16'
                 >
                   Create
                 </button>
@@ -199,13 +201,13 @@ function DetailedPlaythrough() {
           )}
         </div>
         {loading ? (
-          <h3 className='text-3xl'>...loading...</h3>
+          <h3 className='text-3xl mt-6'>...loading...</h3>
         ) : selectedBosses.length === 0 ? (
           <div className='flex h-[60%] justify-center items-center mt-6'>
             <h3 className='text-3xl'>No bosses yet!</h3>
           </div>
         ) : (
-          <div className='flex flex-col w-[33rem] mt-6'>
+          <div className='flex flex-col w-[33rem] xs:w-full xs:text-sm mt-6'>
             {selectedBosses?.map((boss) => (
               <DetailedBoss
                 key={boss.boss_id}

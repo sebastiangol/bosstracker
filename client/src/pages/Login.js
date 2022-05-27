@@ -73,7 +73,7 @@ function Login() {
   return (
     <div className='flex flex-col justify-center items-center fixed h-screen w-screen'>
       <Header />
-      <div className='flex flex-col h-fit items-center text-center bg-teal-800 rounded-lg shadow-md border border-amber-400 scale-150'>
+      <div className='flex flex-col h-fit items-center text-center bg-teal-800 rounded-lg shadow-md border border-amber-400 scale-150 relative bottom-7'>
         <h2 className='text-3xl p-2'>Log In</h2>
         <p className='text-green-300'>{accountCreated}</p>
         <form
@@ -88,7 +88,7 @@ function Login() {
             onChange={(e) => {
               setName(e.target.value);
             }}
-            className='text-field mb-1'
+            className='text-field xl:h-8 mb-1 xl:mb-0'
           />
           <input
             type='password'
@@ -97,11 +97,11 @@ function Login() {
             onChange={(e) => {
               setPassword(e.target.value);
             }}
-            className='text-field mb-3'
+            className='text-field xl:h-8 mb-3'
           />
-          <p className='text-red-500'>{missing}</p>
-          <p className='text-red-500'>{invalid}</p>
-          <button type='submit' className='normal-button'>
+          <p className='text-red-500 xl:text-sm'>{missing}</p>
+          <p className='text-red-500 xl:text-sm'>{invalid}</p>
+          <button type='submit' className='normal-button xl:text-sm'>
             Log In
           </button>
         </form>

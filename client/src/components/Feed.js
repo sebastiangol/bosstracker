@@ -12,11 +12,11 @@ function Feed(props) {
     users,
     setUsers,
     search,
-    setSearch
+    setSearch,
   } = useContext(PlaythroughsContext);
 
   const [filteredData, setFilteredData] = useState([]);
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setSearch('');
@@ -40,7 +40,7 @@ function Feed(props) {
 
   useEffect(() => {
     setFilteredData(
-      playthroughs?.filter(playthrough => {
+      playthroughs?.filter((playthrough) => {
         if (search === '') {
           return playthrough;
         } else if (
@@ -64,24 +64,30 @@ function Feed(props) {
   }, [search, playthroughs]);
 
   return (
-    <div className="flex flex-col items-center text-center bg-teal-800 xl:max-w-6xl mx-auto p-4 m-4 mt-0 rounded-lg shadow-md">
-      <h2 className="text-6xl pb-6">Public Playthroughs</h2>
+    <div className='flex flex-col items-center text-center bg-teal-800  mx-auto p-4 m-4 mt-0 rounded-lg shadow-md w-fit xl:mb-32 sm:mt-16 xs:mt-12'>
+      <h2 className='text-6xl md:text-4xl xs:text-3xl pb-6 md:pb-2'>
+        Public Playthroughs
+      </h2>
       <div
-          className={`${
-            loading || playthroughs?.length === 0 || filteredData?.length === 0 ? 'flex' : 'grid grid-cols-2'
-          }`}
-        >
-        {loading ? <p className="text-3xl m-4">...loading...</p> : playthroughs?.length === 0 ? (
-          <div className="flex justify-center items-center text-3xl m-4">
+        className={`${
+          loading || playthroughs?.length === 0 || filteredData?.length === 0
+            ? 'flex'
+            : 'grid grid-cols-2 xl:flex xl:flex-col xl:items-center '
+        }`}
+      >
+        {loading ? (
+          <p className='text-3xl m-4'>...loading...</p>
+        ) : playthroughs?.length === 0 ? (
+          <div className='flex justify-center items-center text-3xl m-4'>
             No playthroughs were found.
           </div>
         ) : filteredData?.length === 0 ? (
-          <div className="flex justify-center items-center text-3xl m-4">
+          <div className='flex justify-center items-center text-3xl m-4'>
             Your search found no results.
           </div>
         ) : (
           filteredData?.map(
-            playthrough =>
+            (playthrough) =>
               playthrough.profile_public && (
                 <Playthrough
                   key={playthrough.profile_id}
@@ -89,7 +95,7 @@ function Feed(props) {
                   name={playthrough.profile_name}
                   creator={playthrough.user_id}
                   isPublic={playthrough.profile_public}
-                  location="home"
+                  location='home'
                 />
               )
           )

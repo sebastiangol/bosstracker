@@ -82,9 +82,9 @@ function DetailedBoss({
   return (
     <div
       key={id}
-      className='flex justify-between first:border-t border-b p-1 border-amber-400 transition-all duration-150 ease-in-out'
+      className='flex justify-between first:border-t border-b p-1 2xs:p-[0.15rem] border-amber-400 transition-all duration-150 ease-in-out'
     >
-      <p className='flex items-center'>{name}</p>
+      <p className='flex items-center justify-start'>{name}</p>
       <div className='flex transition-all duration-150 ease-in-out'>
         <div className='mb-1 transition-all duration-150 ease-in-out w-32'>
           <div className='flex items-center mb-[0.12rem] justify-end'>
@@ -116,7 +116,7 @@ function DetailedBoss({
           </div>
           <div className='flex justify-end'>
             <button
-              className={`font-semibold rounded-lg transition-all duration-150 ease-in-out w-16 h-6 flex justify-center items-center shadow-md ${
+              className={`font-semibold rounded-lg transition-all duration-150 ease-in-out w-16 h-6 flex justify-center items-center shadow-md border border-amber-400 ${
                 compLoading && 'opacity-50 scale-90'
               } ${!completed ? 'bg-red-600' : 'bg-green-600'} ${
                 selectedPlaythrough.user_id === session &&
@@ -151,7 +151,7 @@ function DetailedBoss({
               <span
                 className={`relative ${
                   bossTooltip ? 'scale-100' : 'scale-0'
-                } flex transition-all duration-150 ease-in-out cursor-pointer z-20 text-white text-lg active:text-gray-300 px-1 bg-red-800 hover:bg-red-700 active:bg-red-800 h-full items-center border-white border-2 rounded-md`}
+                } flex transition-all duration-150 ease-in-out cursor-pointer z-20 text-white text-lg xs:text-sm active:text-gray-300 px-1 bg-red-800 hover:bg-red-700 active:bg-red-800 h-full items-center border-white border-2 rounded-md`}
                 onClick={() => {
                   setDeleteBossModal(true);
                   setBossTooltip(false);

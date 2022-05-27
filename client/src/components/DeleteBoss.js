@@ -13,10 +13,10 @@ function DeleteBoss({ deleteBossModal, setDeleteBossModal, id, name }) {
     session,
     setSession,
     bossDeleted,
-    setBossDeleted
+    setBossDeleted,
   } = useContext(PlaythroughsContext);
 
-  const delBoss = async e => {
+  const delBoss = async (e) => {
     e.preventDefault();
     try {
       const response = await BossesAPI.delete(`/${id}`);
@@ -31,7 +31,7 @@ function DeleteBoss({ deleteBossModal, setDeleteBossModal, id, name }) {
 
   return (
     <div
-      className={`fixed justify-center items-center left-0 top-0 h-screen w-screen ${
+      className={`fixed justify-center items-center left-0 top-0 h-screen w-screen z-40 ${
         deleteBossModal === true ? 'flex' : 'hidden'
       }`}
     >
@@ -41,27 +41,29 @@ function DeleteBoss({ deleteBossModal, setDeleteBossModal, id, name }) {
         }`}
         onClick={() => setDeleteBossModal(false)}
       ></div>
-      <div className="relative flex flex-col h-fit items-center text-center bg-teal-800 rounded-lg shadow-md border border-amber-400 scale-150">
+      <div className='relative flex flex-col h-fit items-center text-center bg-teal-800 rounded-lg shadow-md border border-amber-400 scale-150'>
         <span
-          className="absolute font-mono text-xs right-1 cursor-pointer"
+          className='absolute font-mono text-xs right-1 cursor-pointer'
           onClick={() => setDeleteBossModal(false)}
         >
           x
         </span>
-        <h2 className="text-3xl p-2">Delete Boss?</h2>
-        <h3 className="p-2">Are you sure you want to delete this boss?</h3>
-        <h4 className="pb-2">{name}</h4>
-        <div className="flex justify-between">
+        <h2 className='text-3xl 2xs:text-2xl p-2'>Delete Boss?</h2>
+        <h3 className='p-2 2xs:text-sm'>
+          Are you sure you want to delete this boss?
+        </h3>
+        <h4 className='pb-2'>{name}</h4>
+        <div className='flex justify-between'>
           <button
-            className="normal-button mr-1 bg-red-800 hover:bg-red-700 text-white border-white"
-            onClick={e => {
+            className='normal-button 2xs:text-xs mr-1 bg-red-800 hover:bg-red-700 text-white border-white'
+            onClick={(e) => {
               delBoss(e);
             }}
           >
             Delete
           </button>
           <button
-            className="normal-button ml-1"
+            className='normal-button 2xs:text-xs ml-1'
             onClick={() => setDeleteBossModal(false)}
           >
             Cancel
