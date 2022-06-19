@@ -91,3 +91,10 @@ The "Create one!" button will open the New Playthrough modal if they are logged 
 ![image](https://user-images.githubusercontent.com/75766182/169707750-fbc3d042-db0e-42f6-a91b-8b1bcc89e8c8.png)
 * The Register button redirects to the Register page
 * The Login as Guest button logs in the user with the guest account
+
+### Styling Responsiveness
+The entire application is now responsive and will adapt to all screen sizes
+#### Home page
+![image](https://user-images.githubusercontent.com/75766182/170605549-6ab34dd5-4c58-4c3d-867a-8eb1084b747d.png)
+#### Detailed Playthrough page
+![image](https://user-images.githubusercontent.com/75766182/170605791-19a94153-e727-4b58-b052-970233c4ffd6.png)
