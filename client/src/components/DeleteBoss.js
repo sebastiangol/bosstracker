@@ -3,18 +3,7 @@ import BossesAPI from '../apis/BossesAPI';
 import { PlaythroughsContext } from '../context/PlaythroughsContext';
 
 function DeleteBoss({ deleteBossModal, setDeleteBossModal, id, name }) {
-  const {
-    search,
-    setSearch,
-    loggedIn,
-    setLoggedIn,
-    modalOpen,
-    setModalOpen,
-    session,
-    setSession,
-    bossDeleted,
-    setBossDeleted,
-  } = useContext(PlaythroughsContext);
+  const { bossDeleted, setBossDeleted } = useContext(PlaythroughsContext);
 
   const delBoss = async (e) => {
     e.preventDefault();

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import logo from '../images/logo.png';
 import {
   SearchIcon,
@@ -17,15 +17,8 @@ import NewPlaythrough from './NewPlaythrough';
 //navigate(-1);                     // Equivalent to "history.goBack();"
 
 function Header() {
-  const {
-    search,
-    setSearch,
-    session,
-    setSession,
-    modalOpen,
-    setModalOpen,
-    users,
-  } = useContext(PlaythroughsContext);
+  const { setSearch, session, setSession, setModalOpen, users } =
+    useContext(PlaythroughsContext);
   let navigate = useNavigate();
 
   const navHome = (e) => {
@@ -51,14 +44,13 @@ function Header() {
 
   useEffect(() => {
     setModalOpen(false);
-    // setSession(true);
   }, [Header]);
 
   return (
     <>
       <header className='p-3 shadow-md fixed w-screen top-0 z-30 bg-teal-800 border-b-teal-900'>
         <div className='flex justify-evenly w-full mx-5 lg:mx-auto'>
-          {/* left */}
+          {/* APP NAME & LOGO */}
           <div className='flex justify-center items-center w-full'>
             <div className='mr-4 cursor-pointer' onClick={(e) => navHome(e)}>
               <img className='h-12 xl:h-9' src={logo} alt='' />
@@ -69,17 +61,18 @@ function Header() {
             >
               Boss Tracker
             </p>
-            {users?.map(
-              (user) =>
-                session === user.user_id && (
-                  <p className='hidden xl:block text-lg font-bold whitespace-nowrap overflow-hidden overflow-ellipsis w-24 shadow-sm border-l border-amber-400 pl-2 py-2 ml-6'>
-                    {user.user_name}
-                  </p>
-                )
-            )}
+            {session !== -1 &&
+              users?.map(
+                (user) =>
+                  session === user.user_id && (
+                    <p className='hidden xl:block text-lg font-bold whitespace-nowrap overflow-hidden overflow-ellipsis w-24 shadow-sm border-l border-amber-400 pl-2 py-2 ml-6'>
+                      {user.user_name}
+                    </p>
+                  )
+              )}
           </div>
 
-          {/* middle */}
+          {/* SEARCH BAR */}
           <div className='relative xl:hidden flex items-center w-[65rem] pr-1'>
             <div className='flex items-center absolute inset-y-0 pl-1'>
               <SearchIcon className='h-8' />
@@ -94,7 +87,7 @@ function Header() {
             />
           </div>
 
-          {/* right */}
+          {/* NAVIGATION BUTTONS */}
           <div className='flex xl:hidden items-center space-x-5 w-full justify-center'>
             <HeaderButton
               Icon={HomeIcon}
@@ -155,7 +148,7 @@ function Header() {
         <NewPlaythrough />
       </header>
 
-      {/* MOBILE NAV */}
+      {/* MOBILE NAVIGATION BARS */}
       <div className='hidden xl:block p-3 shadow-lg fixed w-screen bottom-0 z-20 bg-teal-800 border-t border-t-teal-900'>
         <div className='flex flex-col items-center'>
           {/* Search */}
@@ -172,7 +165,7 @@ function Header() {
               className='block bg-teal-900 border-teal-900 rounded-md w-full h-10 pl-10 text-xl focus:ring-amber-400 focus:border-amber-400'
             />
           </div>
-          {/* buttons */}
+          {/* Navigation Buttons */}
           <div className='flex items-center space-x-5 w-full justify-center'>
             <HeaderButton
               Icon={HomeIcon}

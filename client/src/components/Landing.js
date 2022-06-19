@@ -5,8 +5,10 @@ import NewPlaythrough from './NewPlaythrough';
 import { useNavigate } from 'react-router-dom';
 
 function Landing() {
-  const { modalOpen, setModalOpen, session } = useContext(PlaythroughsContext);
+  const { setModalOpen, session } = useContext(PlaythroughsContext);
   let navigate = useNavigate();
+
+  // LANDING CREATE-PLAYTHROUGH BUTTON
   const openModalHandler = (e) => {
     e.preventDefault();
     session === -1 ? navigate('/login') : setModalOpen(true);

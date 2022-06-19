@@ -15,10 +15,11 @@ function Login() {
   const [invalid, setInvalid] = useState('');
   const [missing, setMissing] = useState('');
 
+  // LOG IN USER
   const loginUser = async (e) => {
     e.preventDefault();
     setAccountCreated('');
-    // setInputValue(newValue.replace(" ", ""));
+    // CHECK FOR EMPTY FIELDS
     if (!name || !password) {
       console.log('You must enter a username and password');
       setMissing('You must enter a username and password');
@@ -31,6 +32,7 @@ function Login() {
         user_password: password,
       });
       console.log(response.data.data.users.user_id);
+      // AUTHENTICATE LOGIN DETAILS
       if (response.data.data.users.length !== 0) {
         setSession(response.data.data.users.user_id);
         console.log('BELOW');
@@ -65,6 +67,7 @@ function Login() {
     }
   }, []);
 
+  // RESET ERROR MESSAGES
   useEffect(() => {
     setMissing('');
     setInvalid('');

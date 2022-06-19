@@ -2,17 +2,11 @@ import React, { useContext, useEffect } from 'react';
 import Header from '../components/Header';
 import Landing from '../components/Landing';
 import Feed from '../components/Feed';
-import NewPlaythrough from '../components/NewPlaythrough';
 import { PlaythroughsContext } from '../context/PlaythroughsContext';
 
 function Home() {
-  const {
-    modalOpen,
-    setModalOpen,
-    session,
-    accountCreated,
-    setAccountCreated
-  } = useContext(PlaythroughsContext);
+  const { setModalOpen, session, setAccountCreated } =
+    useContext(PlaythroughsContext);
 
   useEffect(() => {
     setModalOpen(false);
@@ -22,7 +16,7 @@ function Home() {
   }, [Home]);
 
   return (
-    <div className="">
+    <div className=''>
       <Header />
       <Landing />
       <Feed />

@@ -5,8 +5,7 @@ import Header from '../components/Header';
 import { PlaythroughsContext } from '../context/PlaythroughsContext';
 
 function Register() {
-  const { accountCreated, setAccountCreated, session } =
-    useContext(PlaythroughsContext);
+  const { setAccountCreated, session } = useContext(PlaythroughsContext);
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -14,19 +13,23 @@ function Register() {
   const [missing, setMissing] = useState('');
   let navigate = useNavigate();
 
+  // REGISTER NEW ACCOUNT
   const registerUser = async (e) => {
     e.preventDefault();
+    // CHECK FOR SPACES
     if (name.includes(' ')) {
       setInvalid('A username cannot contain spaces');
       return;
     }
 
+    // CHECK FOR EMPTY FIELDS
     if (!name || !password) {
       console.log('You must enter a username and password');
       setMissing('You must enter a username and password');
       return;
     }
 
+    // VALIDATE REGISTRATION ATTEMPT
     if (password === confirmPassword) {
       try {
         const response = await RegisterAPI.post('/', {
@@ -48,19 +51,21 @@ function Register() {
   };
 
   useEffect(() => {
-    setMissing('');
-    setInvalid('');
-  }, [name, password, confirmPassword]);
-
-  useEffect(() => {
     setAccountCreated('');
   }, []);
 
+  // REDIRECT LOGGED-IN USERS
   useEffect(() => {
     if (session !== -1) {
       navigate('/');
     }
   }, []);
+
+  // RESET ERROR MESSAGES
+  useEffect(() => {
+    setMissing('');
+    setInvalid('');
+  }, [name, password, confirmPassword]);
 
   return (
     <div className='flex flex-col justify-center items-center fixed h-screen w-screen'>

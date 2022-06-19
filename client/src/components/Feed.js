@@ -3,13 +3,12 @@ import PlaythroughsAPI from '../apis/PlaythroughsAPI';
 import { PlaythroughsContext } from '../context/PlaythroughsContext';
 import Playthrough from './Playthrough';
 
-function Feed(props) {
+function Feed() {
   const {
     playthroughs,
     setPlaythroughs,
     bosses,
     setBosses,
-    users,
     setUsers,
     search,
     setSearch,
@@ -18,6 +17,7 @@ function Feed(props) {
   const [filteredData, setFilteredData] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  // FETCH ALL PLAYTHROUGHS
   useEffect(() => {
     setSearch('');
     const fetchData = async () => {
@@ -38,6 +38,7 @@ function Feed(props) {
     fetchData();
   }, []);
 
+  // SEARCH FOR SPECIFIC PLAYTHROUGHS
   useEffect(() => {
     setFilteredData(
       playthroughs?.filter((playthrough) => {

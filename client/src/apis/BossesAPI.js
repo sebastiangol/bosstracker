@@ -1,10 +1,7 @@
 import axios from 'axios';
 
-// baseURL: 'http://localhost:5000/api/v1/bosses'
-// baseURL: 'https://bosstracker-server.herokuapp.com/api/v1/bosses'
-
 const prod = {
-  baseURL: 'https://bosstracker-server.herokuapp.com/api/v1/bosses'
+  baseURL: 'https://bosstracker-server.herokuapp.com/api/v1/bosses',
 };
 const dev = { baseURL: 'http://localhost:5000/api/v1/bosses' };
 

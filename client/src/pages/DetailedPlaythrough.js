@@ -3,46 +3,28 @@ import { useParams } from 'react-router-dom';
 import PlaythroughsAPI from '../apis/PlaythroughsAPI';
 import DetailedBoss from '../components/DetailedBoss';
 import Header from '../components/Header';
-import Playthrough from '../components/Playthrough';
 import { PlaythroughsContext } from '../context/PlaythroughsContext';
-import { DotsVerticalIcon } from '@heroicons/react/solid';
 import DeletePlaythrough from '../components/DeletePlaythrough';
 
 function DetailedPlaythrough() {
   const { id } = useParams();
 
-  const {
-    playthroughs,
-    setPlaythroughs,
-    bosses,
-    setBosses,
-    users,
-    setUsers,
-    search,
-    setSearch,
-    modalOpen,
-    setModalOpen,
-    session,
-    bossDeleted,
-    setBossDeleted,
-  } = useContext(PlaythroughsContext);
+  const { users, setUsers, session, bossDeleted } =
+    useContext(PlaythroughsContext);
 
   const [selectedPlaythrough, setSelectedPlaythrough] = useState([]);
   const [selectedBosses, setSelectedBosses] = useState([]);
   const [name, setName] = useState('');
-  // const [attempts, setAttempts] = useState(0);
-  // const [notes, setNotes] = useState('');
-  // const [completed, setCompleted] = useState(false);
   const [missing, setMissing] = useState('');
   const [bossAdded, setBossAdded] = useState(0);
   const [isPublic, setIsPublic] = useState(true);
-  const [profileName, setProfileName] = useState('');
   const [deletePTModal, setDeletePTModal] = useState(false);
   const [publicCount, setPublicCount] = useState(0);
   const [loading, setLoading] = useState(true);
   const [refresh, setRefresh] = useState(0);
+  // const [profileName, setProfileName] = useState('');
 
-  // Fetch selected playthrough
+  // FETCH SELECTED PLAYTHROUGH
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -63,7 +45,7 @@ function DetailedPlaythrough() {
     console.log(selectedPlaythrough);
   }, [bossAdded, bossDeleted, refresh]);
 
-  // Add boss to playthrough
+  // ADD BOSS TO PLAYTHROUGH
   const addBoss = async (e) => {
     e.preventDefault();
     if (!name.trim()) {
@@ -90,7 +72,7 @@ function DetailedPlaythrough() {
     }
   };
 
-  // Update playthrough privacy
+  // UPDATE PLAYTHROUGH PRIVACY
   useEffect(() => {
     const updatePublic = async () => {
       console.log(isPublic);
@@ -112,6 +94,7 @@ function DetailedPlaythrough() {
     setPublicCount(publicCount + 1);
   }, [isPublic]);
 
+  // RESET ERROR MESSAGES ON TYPE
   useEffect(() => {
     setMissing('');
   }, [name]);
@@ -134,6 +117,7 @@ function DetailedPlaythrough() {
           {selectedPlaythrough.user_id === session && (
             <div className='flex flex-col items-center w-full'>
               <div className='flex justify-between w-[32rem] xs:w-full border-b border-amber-400 mb-6 xs:text-sm'>
+                {/* CHANGE PRIVACY */}
                 <div className='flex justify-center items-center'>
                   <span
                     className={`transition-all duration-200 ease-out  ${
@@ -166,6 +150,7 @@ function DetailedPlaythrough() {
                     Private
                   </span>
                 </div>
+                {/* DELETE PLAYTHROUGH */}
                 <div
                   className={`normal-button mr-1 bg-red-800 hover:bg-red-700 text-white border-white m-1`}
                   onClick={() => {
@@ -175,6 +160,7 @@ function DetailedPlaythrough() {
                   Delete Playthrough
                 </div>
               </div>
+              {/* CREATE BOSS */}
               <form
                 onSubmit={(e) => addBoss(e)}
                 className='flex justify-center items-center h-14 bg-teal-800 rounded-lg shadow-md border border-amber-400 w-fit '
@@ -196,10 +182,12 @@ function DetailedPlaythrough() {
                   Create
                 </button>
               </form>
+              {/* TEXTFIELD ERROR MESSAGE */}
               <p className='text-red-500 text-lg'>{missing}</p>
             </div>
           )}
         </div>
+        {/* BOSSES LIST */}
         {loading ? (
           <h3 className='text-3xl mt-6'>...loading...</h3>
         ) : selectedBosses.length === 0 ? (
@@ -224,6 +212,7 @@ function DetailedPlaythrough() {
           </div>
         )}
       </div>
+      {/* DELETE PLAYTHROUGH MODAL */}
       <DeletePlaythrough
         deletePTModal={deletePTModal}
         setDeletePTModal={setDeletePTModal}

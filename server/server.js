@@ -9,7 +9,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Register!
+// REGISTER ACCOUNT
 app.post('/api/v1/register', async (req, res) => {
   try {
     // bcrypt
@@ -46,7 +46,7 @@ app.post('/api/v1/register', async (req, res) => {
   }
 });
 
-// Log In
+// LOG IN TO ACCOUNT
 app.post('/api/v1/login', async (req, res) => {
   try {
     const result = await db.query(
@@ -79,7 +79,7 @@ app.post('/api/v1/login', async (req, res) => {
   }
 });
 
-// Get all profiles
+// GET ALL PROFILES
 app.get('/api/v1/profiles', async (req, res) => {
   try {
     const users = await db.query('SELECT user_id, user_name FROM users');
@@ -102,7 +102,7 @@ app.get('/api/v1/profiles', async (req, res) => {
   }
 });
 
-// Get one profile
+// GET ONE PROFILE
 app.get('/api/v1/profiles/:id', async (req, res) => {
   try {
     const results = await db.query(
@@ -126,7 +126,7 @@ app.get('/api/v1/profiles/:id', async (req, res) => {
   }
 });
 
-// Get all profiles belonging to a certain user
+// GET ALL PROFILES BELONGING TO A CERTAIN USER
 app.get('/api/v1/profiles/user/:id', async (req, res) => {
   try {
     const users = await db.query(
@@ -153,7 +153,7 @@ app.get('/api/v1/profiles/user/:id', async (req, res) => {
   }
 });
 
-// Create a profile
+// CREATE A PROFILE
 app.post('/api/v1/profiles', async (req, res) => {
   try {
     const results = await db.query(
@@ -172,7 +172,7 @@ app.post('/api/v1/profiles', async (req, res) => {
   }
 });
 
-// Update a profile's publicity
+// UPDATE PROFILE PUBLICITY
 app.put('/api/v1/profiles/:id', async (req, res) => {
   try {
     const results = await db.query(
@@ -191,7 +191,7 @@ app.put('/api/v1/profiles/:id', async (req, res) => {
   }
 });
 
-// Delete a profile
+// DELETE PROFILE
 app.delete('/api/v1/profiles/:id', async (req, res) => {
   try {
     const results = await db.query(
@@ -209,7 +209,7 @@ app.delete('/api/v1/profiles/:id', async (req, res) => {
   }
 });
 
-// Create a boss
+// CREATE BOSS
 app.post('/api/v1/profiles/:id', async (req, res) => {
   try {
     const results = await db.query(
@@ -234,7 +234,7 @@ app.post('/api/v1/profiles/:id', async (req, res) => {
   }
 });
 
-// Update boss attempts
+// UPDATE BOSS ATTEMPTS
 app.put('/api/v1/bosses/:id/attempts', async (req, res) => {
   try {
     const results = await db.query(
@@ -252,7 +252,7 @@ app.put('/api/v1/bosses/:id/attempts', async (req, res) => {
   }
 });
 
-// Update boss completed
+// UPDATE BOSS COMPLETED STATUS
 app.put('/api/v1/bosses/:id/completed', async (req, res) => {
   try {
     const results = await db.query(
@@ -270,7 +270,7 @@ app.put('/api/v1/bosses/:id/completed', async (req, res) => {
   }
 });
 
-// Delete a boss
+// DELETE BOSS
 app.delete('/api/v1/bosses/:id', async (req, res) => {
   try {
     const results = await db.query('DELETE FROM bosses WHERE boss_id = $1', [
@@ -287,7 +287,7 @@ app.delete('/api/v1/bosses/:id', async (req, res) => {
   }
 });
 
-//Listen to port
+// LISTEN TO PORT
 const port = process.env.PORT || 5000;
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);

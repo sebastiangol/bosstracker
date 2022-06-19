@@ -14,11 +14,9 @@ function YourPlaythroughs() {
     setPlaythroughs,
     bosses,
     setBosses,
-    users,
     setUsers,
     search,
     setSearch,
-    modalOpen,
     setModalOpen,
     session,
   } = useContext(PlaythroughsContext);
@@ -26,6 +24,7 @@ function YourPlaythroughs() {
   const [loading, setLoading] = useState(true);
   const [filteredData, setFilteredData] = useState([]);
 
+  // FETCH LOGGED-IN USER'S PLAYTHROUGHS
   useEffect(() => {
     id !== session &&
       (session === -1 ? navigate('/') : navigate(`/profiles/user/${session}`));
@@ -48,6 +47,7 @@ function YourPlaythroughs() {
     fetchData();
   }, []);
 
+  // SEARCH FOR SPECIFIC PLAYTHROUGHS
   useEffect(() => {
     setFilteredData(
       playthroughs?.filter((playthrough) => {

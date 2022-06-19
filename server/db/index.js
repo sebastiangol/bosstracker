@@ -3,17 +3,20 @@
 const { Pool } = require('pg');
 require('dotenv').config();
 
+// DATABASE CONFIG FOR DEVELOPMENT
 const devConfig = {
   user: process.env.PGUSER,
   host: process.env.PGHOST,
   password: process.env.PGPASSWORD,
   database: process.env.PGDATABASE,
-  port: process.env.PGPORT
+  port: process.env.PGPORT,
   // ssl: {rejectUnauthorized: false}
 };
+
+// DATABASE CONFIG FOR PRODUCTION
 const prodConfig = {
   connectionString: process.env.DATABASE_URL,
-  ssl: { rejectUnauthorized: false }
+  ssl: { rejectUnauthorized: false },
 };
 
 const pool = new Pool(
@@ -28,5 +31,5 @@ const pool = new Pool(
 // {
 
 module.exports = {
-  query: (text, params) => pool.query(text, params)
+  query: (text, params) => pool.query(text, params),
 };

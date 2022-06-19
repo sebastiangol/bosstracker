@@ -20,6 +20,7 @@ function DetailedBoss({
   const [loading, setLoading] = useState(false);
   const [compLoading, setCompLoading] = useState(false);
 
+  // ADD AN ATTEMPT
   const plusAttempt = async (e) => {
     e.preventDefault();
     if (attempts + 1 === 1000) {
@@ -41,6 +42,7 @@ function DetailedBoss({
     }
   };
 
+  // REMOVE AN ATTEMPT
   const minusAttempt = async (e) => {
     e.preventDefault();
     if (attempts - 1 === -1) {
@@ -62,6 +64,7 @@ function DetailedBoss({
     }
   };
 
+  // UPDATE COMPLETED STATUS
   const changeCompleted = async (e) => {
     e.preventDefault();
     setCompLoading(true);
@@ -118,7 +121,11 @@ function DetailedBoss({
             <button
               className={`font-semibold rounded-lg transition-all duration-150 ease-in-out w-16 h-6 flex justify-center items-center shadow-md border border-amber-400 ${
                 compLoading && 'opacity-50 scale-90'
-              } ${!completed ? 'bg-red-600' : 'bg-green-600'} ${
+              } ${
+                !completed
+                  ? 'bg-red-600 hover:bg-red-500'
+                  : 'bg-green-600 hover:bg-green-500'
+              } ${
                 selectedPlaythrough.user_id === session &&
                 `${
                   !completed

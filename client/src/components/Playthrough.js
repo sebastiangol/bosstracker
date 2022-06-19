@@ -5,16 +5,7 @@ import Boss from './Boss';
 import { EyeIcon, EyeOffIcon } from '@heroicons/react/outline';
 
 function Playthrough({ id, name, creator, isPublic, location }) {
-  const {
-    playthroughs,
-    setPlaythroughs,
-    bosses,
-    setBosses,
-    users,
-    setUsers,
-    search,
-    setSearch,
-  } = useContext(PlaythroughsContext);
+  const { bosses, users } = useContext(PlaythroughsContext);
 
   const [filteredBosses, setFilteredBosses] = useState([]);
 
@@ -25,6 +16,7 @@ function Playthrough({ id, name, creator, isPublic, location }) {
     navigate(`/profiles/${id}`);
   };
 
+  // GET PLAYTHROUGH'S BOSSES
   useEffect(() => {
     setFilteredBosses(
       bosses?.filter((boss) => {

@@ -1,21 +1,10 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import PlaythroughsAPI from '../apis/PlaythroughsAPI';
 import { PlaythroughsContext } from '../context/PlaythroughsContext';
 import { useNavigate } from 'react-router-dom';
 
 function DeletePlaythrough({ deletePTModal, setDeletePTModal, id, name }) {
-  const {
-    search,
-    setSearch,
-    loggedIn,
-    setLoggedIn,
-    modalOpen,
-    setModalOpen,
-    session,
-    setSession,
-    bossDeleted,
-    setBossDeleted,
-  } = useContext(PlaythroughsContext);
+  const { session } = useContext(PlaythroughsContext);
 
   const navigate = useNavigate();
 
@@ -27,7 +16,6 @@ function DeletePlaythrough({ deletePTModal, setDeletePTModal, id, name }) {
       const response = await PlaythroughsAPI.delete(`/${id}`);
       console.log(response);
       console.log('The boss was deleted.');
-      // setBossDeleted(bossDeleted + 1);
       setDeletePTModal(false);
       navigate(`/profiles/user/${session}`);
     } catch (err) {

@@ -2,27 +2,18 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PlaythroughsAPI from '../apis/PlaythroughsAPI';
 import { PlaythroughsContext } from '../context/PlaythroughsContext';
-import Header from './Header';
 
 function NewPlaythrough() {
-  const {
-    search,
-    setSearch,
-    loggedIn,
-    setLoggedIn,
-    modalOpen,
-    setModalOpen,
-    session,
-    setSession
-  } = useContext(PlaythroughsContext);
+  const { modalOpen, setModalOpen, session } = useContext(PlaythroughsContext);
   const [isPublic, setIsPublic] = useState(true);
   const [name, setName] = useState('');
   const [missing, setMissing] = useState('');
   let navigate = useNavigate();
 
-  const createNew = async e => {
+  // CREATE PLAYTHROUGH
+  const createNew = async (e) => {
     e.preventDefault();
-    // setInputValue(newValue.replace(" ", ""));
+    // PREVENT EMPTY FIELD
     if (!name.trim()) {
       console.log('You must enter a playthrough name');
       setMissing('You must enter a playthrough name');
@@ -33,7 +24,7 @@ function NewPlaythrough() {
       const response = await PlaythroughsAPI.post('/', {
         user_id: session,
         profile_name: name,
-        profile_public: isPublic
+        profile_public: isPublic,
       });
       console.log(response);
       console.log('Success! The playthrough was created.');
@@ -44,14 +35,18 @@ function NewPlaythrough() {
       setMissing('Something went wrong');
     }
   };
+
+  // RESET MODAL
   useEffect(() => {
     setIsPublic(true);
     setName('');
   }, [modalOpen]);
 
+  // RESET ERROR MESSAGES
   useEffect(() => {
     setMissing('');
   }, [name]);
+
   return (
     <div
       className={`fixed justify-center items-center left-0 top-0 h-screen w-screen ${
@@ -64,31 +59,31 @@ function NewPlaythrough() {
         }`}
         onClick={() => setModalOpen(false)}
       ></div>
-      <div className="relative flex flex-col h-fit items-center text-center bg-teal-800 rounded-lg shadow-md border border-amber-400 scale-150">
+      <div className='relative flex flex-col h-fit items-center text-center bg-teal-800 rounded-lg shadow-md border border-amber-400 scale-150'>
         <span
-          className="absolute font-mono text-xs right-1 cursor-pointer"
+          className='absolute font-mono text-xs right-1 cursor-pointer'
           onClick={() => setModalOpen(false)}
         >
           x
         </span>
-        <h2 className="text-3xl p-2">New Playthrough</h2>
+        <h2 className='text-3xl p-2'>New Playthrough</h2>
         <form
-          onSubmit={e => {
+          onSubmit={(e) => {
             createNew(e);
           }}
-          action=""
-          className="flex flex-col items-center"
+          action=''
+          className='flex flex-col items-center'
         >
           <input
-            type="text"
-            placeholder="Playthrough Name"
-            onChange={e => {
+            type='text'
+            placeholder='Playthrough Name'
+            onChange={(e) => {
               setName(e.target.value);
             }}
             value={name}
-            className="text-field"
+            className='text-field'
           />
-          <div className="flex justify-center items-center" value={isPublic}>
+          <div className='flex justify-center items-center' value={isPublic}>
             <span
               className={`transition-all duration-200 ease-out  ${
                 isPublic
@@ -99,7 +94,7 @@ function NewPlaythrough() {
               Public
             </span>
             <div
-              className="flex relative items-center justify-start bg-teal-900  border border-amber-400 w-16 m-2 h-6 rounded-3xl"
+              className='flex relative items-center justify-start bg-teal-900  border border-amber-400 w-16 m-2 h-6 rounded-3xl'
               onClick={() =>
                 isPublic ? setIsPublic(false) : setIsPublic(true)
               }
@@ -122,8 +117,8 @@ function NewPlaythrough() {
               Private
             </span>
           </div>
-          <p className="text-red-500">{missing}</p>
-          <button type="submit" className="normal-button">
+          <p className='text-red-500'>{missing}</p>
+          <button type='submit' className='normal-button'>
             Create Playthrough
           </button>
         </form>
