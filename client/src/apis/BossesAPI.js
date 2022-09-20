@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const prod = {
-  baseURL: 'https://bosstracker-server.onrender.com/api/v1/bosses',
+  baseURL: 'https://bosstracker.onrender.com/api/v1/bosses',
 };
 const dev = { baseURL: 'http://localhost:5000/api/v1/bosses' };
 
