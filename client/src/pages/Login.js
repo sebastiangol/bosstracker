@@ -57,7 +57,7 @@ function Login() {
 
   const loginGuest = (e) => {
     e.preventDefault();
-    setSession(2);
+    setSession(3);
     navigate('/');
   };
 
