@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import RegisterAPI from '../apis/RegisterAPI';
 import Header from '../components/Header';
 import { PlaythroughsContext } from '../context/PlaythroughsContext';
+import LoadingIcon from '../components/LoadingIcon.js';
 
 function Register() {
   const { setAccountCreated, session } = useContext(PlaythroughsContext);
@@ -12,13 +13,16 @@ function Register() {
   const [invalid, setInvalid] = useState('');
   const [missing, setMissing] = useState('');
   let navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   // REGISTER NEW ACCOUNT
   const registerUser = async (e) => {
+    setLoading(true);
     e.preventDefault();
     // CHECK FOR SPACES
     if (name.includes(' ')) {
       setInvalid('A username cannot contain spaces');
+      setLoading(false);
       return;
     }
 
@@ -26,6 +30,7 @@ function Register() {
     if (!name || !password) {
       console.log('You must enter a username and password');
       setMissing('You must enter a username and password');
+      setLoading(false);
       return;
     }
 
@@ -48,6 +53,7 @@ function Register() {
       console.log('The two passwords do not match');
       setInvalid('The two passwords do not match');
     }
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -103,8 +109,12 @@ function Register() {
           />
           <p className='text-red-500'>{missing}</p>
           <p className='text-red-500'>{invalid}</p>
-          <button type='submit' className='normal-button'>
-            Register
+          <button
+            type='submit'
+            disabled={loading}
+            className='normal-button w-16 disabled:pointer-events-none'
+          >
+            {loading ? <LoadingIcon /> : 'Register'}
           </button>
         </form>
       </div>

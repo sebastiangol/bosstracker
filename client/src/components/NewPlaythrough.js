@@ -2,21 +2,25 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PlaythroughsAPI from '../apis/PlaythroughsAPI';
 import { PlaythroughsContext } from '../context/PlaythroughsContext';
+import LoadingIcon from './LoadingIcon';
 
 function NewPlaythrough() {
   const { modalOpen, setModalOpen, session } = useContext(PlaythroughsContext);
   const [isPublic, setIsPublic] = useState(true);
   const [name, setName] = useState('');
   const [missing, setMissing] = useState('');
+  const [loading, setLoading] = useState(false);
   let navigate = useNavigate();
 
   // CREATE PLAYTHROUGH
   const createNew = async (e) => {
+    setLoading(true);
     e.preventDefault();
     // PREVENT EMPTY FIELD
     if (!name.trim()) {
       console.log('You must enter a playthrough name');
       setMissing('You must enter a playthrough name');
+      setLoading(false);
       return;
     }
 
@@ -34,6 +38,7 @@ function NewPlaythrough() {
       console.log(err);
       setMissing('Something went wrong');
     }
+    setLoading(false);
   };
 
   // RESET MODAL
@@ -93,11 +98,10 @@ function NewPlaythrough() {
             >
               Public
             </span>
-            <div
-              className='flex relative items-center justify-start bg-teal-900  border border-amber-400 w-16 m-2 h-6 rounded-3xl'
-              onClick={() =>
-                isPublic ? setIsPublic(false) : setIsPublic(true)
-              }
+            <button
+              className='flex relative items-center justify-start bg-teal-900  border border-amber-400 w-16 m-2 h-6 rounded-3xl disabled:pointer-events-none'
+              disabled={loading}
+              onClick={() => setIsPublic(!isPublic)}
             >
               <div
                 className={`absolute cursor-pointer bg-amber-400 hover:bg-amber-300 w-7 m-2 h-5 rounded-3xl transition-all duration-200 ease-out ${
@@ -106,7 +110,7 @@ function NewPlaythrough() {
                     : 'right-[-0.45rem] left-[1.56rem]'
                 }`}
               ></div>
-            </div>
+            </button>
             <span
               className={`transition-all duration-200 ease-out ${
                 !isPublic
@@ -118,8 +122,12 @@ function NewPlaythrough() {
             </span>
           </div>
           <p className='text-red-500'>{missing}</p>
-          <button type='submit' className='normal-button'>
-            Create Playthrough
+          <button
+            type='submit'
+            className='normal-button w-32 disabled:pointer-events-none'
+            disabled={loading}
+          >
+            {loading ? <LoadingIcon /> : 'Create Playthrough'}
           </button>
         </form>
       </div>

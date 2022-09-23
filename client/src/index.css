@@ -20,7 +20,7 @@
   }
 
   .normal-button {
-    @apply cursor-pointer flex items-center justify-center p-2 mb-3 mt-2 text-amber-400 border-2 border-amber-400 rounded-md shadow-lg bg-teal-800 hover:bg-teal-700 w-fit font-bold hover:scale-105 active:scale-100 transition-all duration-150 ease-out;
+    @apply cursor-pointer flex items-center justify-center w-fit p-2 mb-3 mt-2 text-amber-400 border-2 border-amber-400 rounded-md shadow-lg bg-teal-800 hover:bg-teal-700 font-bold hover:scale-105 active:scale-100 transition-all duration-150 ease-out;
   }
 
   .text-field {

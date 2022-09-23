@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import PlaythroughsAPI from '../apis/PlaythroughsAPI';
 import { PlaythroughsContext } from '../context/PlaythroughsContext';
 import Playthrough from './Playthrough';
+import LoadingIcon from './LoadingIcon.js';
 
 function Feed() {
   const {
@@ -77,7 +78,7 @@ function Feed() {
         }`}
       >
         {loading ? (
-          <p className='text-3xl m-4'>...loading...</p>
+          <LoadingIcon />
         ) : playthroughs?.length === 0 ? (
           <div className='flex justify-center items-center text-3xl m-4'>
             No playthroughs were found.

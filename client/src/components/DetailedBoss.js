@@ -98,7 +98,7 @@ function DetailedBoss({
                   className={`rounded-full shadow-md ${
                     !loading &&
                     'hover:bg-teal-700 active:bg-teal-800 cursor-pointer'
-                  }active:scale-95 transition-all duration-150 ease-out disabled:opacity-50`}
+                  }active:scale-95 transition-all duration-150 ease-out disabled:opacity-50 disabled:pointer-events-none`}
                   onClick={(e) => plusAttempt(e)}
                   disabled={loading}
                 >
@@ -108,7 +108,7 @@ function DetailedBoss({
                   className={`rounded-full shadow-md ${
                     !loading &&
                     'hover:bg-teal-700 active:bg-teal-800 cursor-pointer'
-                  } active:scale-95 transition-all duration-150 ease-out disabled:opacity-50`}
+                  } active:scale-95 transition-all duration-150 ease-out disabled:opacity-50 disabled:pointer-events-none`}
                   onClick={(e) => minusAttempt(e)}
                   disabled={loading}
                 >
@@ -119,7 +119,7 @@ function DetailedBoss({
           </div>
           <div className='flex justify-end'>
             <button
-              className={`font-semibold rounded-lg transition-all duration-150 ease-in-out w-16 h-6 flex justify-center items-center shadow-md border border-amber-400 ${
+              className={`font-semibold rounded-lg transition-all duration-150 ease-in-out w-16 h-6 flex justify-center items-center shadow-md border border-amber-400 disabled:pointer-events-none ${
                 compLoading && 'opacity-50 scale-90'
               } ${
                 !completed

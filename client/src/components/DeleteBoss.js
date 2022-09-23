@@ -1,11 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react';
 import BossesAPI from '../apis/BossesAPI';
 import { PlaythroughsContext } from '../context/PlaythroughsContext';
+import LoadingIcon from './LoadingIcon';
 
 function DeleteBoss({ deleteBossModal, setDeleteBossModal, id, name }) {
   const { bossDeleted, setBossDeleted } = useContext(PlaythroughsContext);
+  const [loading, setLoading] = useState(false);
 
   const delBoss = async (e) => {
+    setLoading(true);
     e.preventDefault();
     try {
       const response = await BossesAPI.delete(`/${id}`);
@@ -16,6 +19,7 @@ function DeleteBoss({ deleteBossModal, setDeleteBossModal, id, name }) {
     } catch (err) {
       console.log(err);
     }
+    setLoading(false);
   };
 
   return (
@@ -44,15 +48,16 @@ function DeleteBoss({ deleteBossModal, setDeleteBossModal, id, name }) {
         <h4 className='pb-2'>{name}</h4>
         <div className='flex justify-between'>
           <button
-            className='normal-button 2xs:text-xs mr-1 bg-red-800 hover:bg-red-700 text-white border-white'
+            className='normal-button w-14 2xs:text-xs mr-2 bg-red-800 hover:bg-red-700 text-white border-white disabled:pointer-events-none'
+            disabled={loading}
             onClick={(e) => {
               delBoss(e);
             }}
           >
-            Delete
+            {loading ? <LoadingIcon /> : 'Delete'}
           </button>
           <button
-            className='normal-button 2xs:text-xs ml-1'
+            className='normal-button w-14 2xs:text-xs ml-2'
             onClick={() => setDeleteBossModal(false)}
           >
             Cancel

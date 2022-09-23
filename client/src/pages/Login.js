@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import LoginAPI from '../apis/LoginAPI';
 import Header from '../components/Header';
 import { PlaythroughsContext } from '../context/PlaythroughsContext';
+import LoadingIcon from '../components/LoadingIcon.js';
 
 function Login() {
   const { session, setSession, accountCreated, setAccountCreated } =
@@ -14,15 +15,18 @@ function Login() {
   const [password, setPassword] = useState('');
   const [invalid, setInvalid] = useState('');
   const [missing, setMissing] = useState('');
+  const [loading, setLoading] = useState(false);
 
   // LOG IN USER
   const loginUser = async (e) => {
+    setLoading(true);
     e.preventDefault();
     setAccountCreated('');
     // CHECK FOR EMPTY FIELDS
     if (!name || !password) {
       console.log('You must enter a username and password');
       setMissing('You must enter a username and password');
+      setLoading(false);
       return;
     }
 
@@ -48,6 +52,7 @@ function Login() {
       console.log('invalid username or password');
       setInvalid('Invalid username or password');
     }
+    setLoading(false);
   };
 
   const navRegister = (e) => {
@@ -104,21 +109,25 @@ function Login() {
           />
           <p className='text-red-500 xl:text-sm'>{missing}</p>
           <p className='text-red-500 xl:text-sm'>{invalid}</p>
-          <button type='submit' className='normal-button xl:text-sm'>
-            Log In
+          <button
+            type='submit'
+            disabled={loading}
+            className='normal-button w-14 xl:text-sm disabled:pointer-events-none'
+          >
+            {loading ? <LoadingIcon /> : 'Log In'}
           </button>
         </form>
         <p className='text-sm'>Don't have an account?</p>
         <div className='flex justify-evenly items-center w-full'>
           <button
-            className='normal-button text-xs h-8 w-[4.84rem]'
+            className='normal-button text-xs h-8 w-[4.7rem]'
             onClick={(e) => navRegister(e)}
           >
             Register
           </button>
-          <p>Or</p>
+          <p className='sm:text-sm'>Or</p>
           <button
-            className='normal-button text-xs h-8 w-[4.84rem]'
+            className='normal-button text-xs sm:text-[0.7rem] h-8 w-[4.9rem] sm:w-[4.7rem]'
             onClick={(e) => loginGuest(e)}
           >
             Login as Guest

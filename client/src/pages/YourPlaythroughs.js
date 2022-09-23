@@ -4,6 +4,7 @@ import PlaythroughsAPI from '../apis/PlaythroughsAPI';
 import { PlaythroughsContext } from '../context/PlaythroughsContext';
 import Playthrough from '../components/Playthrough';
 import { useNavigate, useParams } from 'react-router-dom';
+import LoadingIcon from '../components/LoadingIcon.js';
 
 function YourPlaythroughs() {
   const { id } = useParams();
@@ -86,7 +87,7 @@ function YourPlaythroughs() {
           }`}
         >
           {loading ? (
-            <p className='text-3xl m-4'>...loading...</p>
+            <LoadingIcon />
           ) : playthroughs?.length === 0 ? (
             <div className='flex flex-col justify-center items-center'>
               <p className='text-3xl m-4'>You have no playthroughs yet!</p>
