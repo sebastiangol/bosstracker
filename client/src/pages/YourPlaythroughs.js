@@ -5,6 +5,7 @@ import { PlaythroughsContext } from '../context/PlaythroughsContext';
 import Playthrough from '../components/Playthrough';
 import { useNavigate, useParams } from 'react-router-dom';
 import LoadingIcon from '../components/LoadingIcon.js';
+import axios from 'axios';
 
 function YourPlaythroughs() {
   const { id } = useParams();
@@ -30,9 +31,13 @@ function YourPlaythroughs() {
     id !== session &&
       (session === -1 ? navigate('/') : navigate(`/profiles/user/${session}`));
     setSearch('');
+    let CancelToken = axios.CancelToken;
+    let source = CancelToken.source();
     const fetchData = async () => {
       try {
-        const response = await PlaythroughsAPI.get(`/user/${id}`);
+        const response = await PlaythroughsAPI.get(`/user/${id}`, {
+          cancelToken: source.token,
+        });
         setUsers(response.data.data.users);
         setPlaythroughs(response.data.data.profiles);
         setBosses(response.data.data.bosses);
@@ -46,6 +51,10 @@ function YourPlaythroughs() {
       }
     };
     fetchData();
+
+    return () => {
+      source.cancel(' Fetch cancelled');
+    };
   }, []);
 
   // SEARCH FOR SPECIFIC PLAYTHROUGHS

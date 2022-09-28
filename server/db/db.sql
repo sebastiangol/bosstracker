@@ -12,6 +12,7 @@
 -- https://www.postgresqltutorial.com/
 -- https://www.postgresql.org/docs/
 -- https://node-postgres.com/
+-- psql -U *USERNAME* -> postgres
 
 CREATE DATABASE bosstracker;
 

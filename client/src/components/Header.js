@@ -65,7 +65,10 @@ function Header() {
               users?.map(
                 (user) =>
                   session === user.user_id && (
-                    <p className='hidden xl:block text-lg font-bold whitespace-nowrap overflow-hidden overflow-ellipsis w-24 shadow-sm border-l border-amber-400 pl-2 py-2 ml-6'>
+                    <p
+                      key={user.user_id}
+                      className='hidden xl:block text-lg font-bold whitespace-nowrap overflow-hidden overflow-ellipsis w-24 shadow-sm border-l border-amber-400 pl-2 py-2 ml-6'
+                    >
                       {user.user_name}
                     </p>
                   )
@@ -119,7 +122,10 @@ function Header() {
                 {users?.map(
                   (user) =>
                     session === user.user_id && (
-                      <p className='text-lg font-bold whitespace-nowrap overflow-hidden overflow-ellipsis w-24 shadow-sm border-l border-amber-400 pl-2 py-2'>
+                      <p
+                        key={user.user_id}
+                        className='text-lg font-bold whitespace-nowrap overflow-hidden overflow-ellipsis w-24 shadow-sm border-l border-amber-400 pl-2 py-2'
+                      >
                         {user.user_name}
                       </p>
                     )

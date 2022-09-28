@@ -6,6 +6,7 @@ import Header from '../components/Header';
 import { PlaythroughsContext } from '../context/PlaythroughsContext';
 import DeletePlaythrough from '../components/DeletePlaythrough';
 import LoadingIcon from '../components/LoadingIcon';
+import axios from 'axios';
 
 function DetailedPlaythrough() {
   const { id } = useParams();
@@ -29,12 +30,19 @@ function DetailedPlaythrough() {
 
   // FETCH SELECTED PLAYTHROUGH
   useEffect(() => {
+    let CancelToken = axios.CancelToken;
+    let source = CancelToken.source();
+
     const fetchData = async () => {
       try {
-        const response = await PlaythroughsAPI.get(`/${id}`);
+        const response = await PlaythroughsAPI.get(`/${id}`, {
+          cancelToken: source.token,
+        });
         setSelectedPlaythrough(response.data.data.profile);
         setSelectedBosses(response.data.data.bosses);
-        const responseUsers = await PlaythroughsAPI.get('/');
+        const responseUsers = await PlaythroughsAPI.get('/', {
+          cancelToken: source.token,
+        });
         setUsers(responseUsers.data.data.users);
         setIsPublic(response.data.data.profile.profile_public);
       } catch (err) {
@@ -45,6 +53,10 @@ function DetailedPlaythrough() {
     fetchData();
     console.log(users);
     console.log(selectedPlaythrough);
+
+    return () => {
+      source.cancel('Fetch cancelled');
+    };
   }, [bossAdded, bossDeleted, refresh]);
 
   // ADD BOSS TO PLAYTHROUGH
@@ -79,13 +91,20 @@ function DetailedPlaythrough() {
 
   // UPDATE PLAYTHROUGH PRIVACY
   useEffect(() => {
+    let CancelToken = axios.CancelToken;
+    let source = CancelToken.source();
+
     const updatePublic = async () => {
       setLoadingPublic(true);
       console.log(isPublic);
       try {
-        const response = await PlaythroughsAPI.put(`/${id}`, {
-          profile_public: isPublic,
-        });
+        const response = await PlaythroughsAPI.put(
+          `/${id}`,
+          {
+            profile_public: isPublic,
+          },
+          { cancelToken: source.token }
+        );
         console.log(isPublic);
         console.log(response);
         console.log('Playthrough publicity updated successfully');
@@ -99,6 +118,10 @@ function DetailedPlaythrough() {
       updatePublic();
     }
     setPublicCount(publicCount + 1);
+
+    return () => {
+      source.cancel('Update cancelled');
+    };
   }, [isPublic]);
 
   // RESET ERROR MESSAGES ON TYPE

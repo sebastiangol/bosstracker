@@ -3,6 +3,7 @@ import PlaythroughsAPI from '../apis/PlaythroughsAPI';
 import { PlaythroughsContext } from '../context/PlaythroughsContext';
 import Playthrough from './Playthrough';
 import LoadingIcon from './LoadingIcon.js';
+import axios from 'axios';
 
 function Feed() {
   const {
@@ -21,9 +22,13 @@ function Feed() {
   // FETCH ALL PLAYTHROUGHS
   useEffect(() => {
     setSearch('');
+    let CancelToken = axios.CancelToken;
+    let source = CancelToken.source();
     const fetchData = async () => {
       try {
-        const response = await PlaythroughsAPI.get('/');
+        const response = await PlaythroughsAPI.get('/', {
+          cancelToken: source.token,
+        });
         setUsers(response.data.data.users);
         setPlaythroughs(response.data.data.profiles);
         setBosses(response.data.data.bosses);
@@ -37,6 +42,10 @@ function Feed() {
       }
     };
     fetchData();
+
+    return () => {
+      source.cancel('Fetch cancelled');
+    };
   }, []);
 
   // SEARCH FOR SPECIFIC PLAYTHROUGHS
