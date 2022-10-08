@@ -124,12 +124,9 @@ function DetailedBoss({
     setLoadingNote(false);
   };
 
-  useEffect(
-    (openNote) => {
-      setNewNote(notes);
-    },
-    [openNote]
-  );
+  useEffect(() => {
+    setNewNote(notes);
+  }, [openNote]);
 
   return (
     <li
@@ -248,8 +245,8 @@ function DetailedBoss({
       >
         <div
           className={`${
-            openNote !== id && 'h-0'
-          } absolute w-[27rem] xs:w-[19rem] h-3 bg-gradient-to-b ${
+            openNote !== id ? 'h-0' : 'h-3'
+          } absolute w-[27rem] xs:w-[19rem] bg-gradient-to-b ${
             loadingNote ? 'from-gray-700' : 'from-teal-900'
           } z-10 right-12 xs:right-12 top-[0.08rem] transition-all duration-150 ease-in-out`}
         ></div>
