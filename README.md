@@ -98,3 +98,15 @@ The entire application is now responsive and will adapt to all screen sizes
 ![image](https://user-images.githubusercontent.com/75766182/170605549-6ab34dd5-4c58-4c3d-867a-8eb1084b747d.png)
 #### Detailed Playthrough page
 ![image](https://user-images.githubusercontent.com/75766182/170605791-19a94153-e727-4b58-b052-970233c4ffd6.png)
+
+### 08/10/2022
+#### Improved Detailed-Playthrough page
+![image](https://user-images.githubusercontent.com/75766182/194694194-b1e52070-6700-4b12-bf22-dd159cadca02.png)
+#### Boss notes
+* Notes can be written for each boss, and can be viewed by clicking on the desired boss
+![image](https://user-images.githubusercontent.com/75766182/194694372-0c3a21a2-d22e-4c25-848d-59f26f4462bd.png)
+* Notes can be edited by clicking the pencil icon or double-clicking on the notes area. The update is confirmed by clicking on the tick icon:
+![image](https://user-images.githubusercontent.com/75766182/194694555-e424388b-bcbb-448e-9dd0-b8830165d017.png)
+
+#### To do
+* Alter initial location of text cursor when editing a note
