@@ -269,8 +269,8 @@ function DetailedBoss({
         </textarea>
         <div
           className={`${
-            openNote !== id && 'h-0'
-          } absolute w-[31rem] xs:w-[19rem] h-3 bg-gradient-to-t ${
+            openNote !== id ? 'h-0' : 'h-3'
+          } absolute w-[31rem] xs:w-[19rem] bg-gradient-to-t ${
             loadingNote ? 'from-gray-700' : 'from-teal-900'
           } z-10 right-4 xs:right-12 bottom-[0.09rem] transition-all duration-150 ease-in-out`}
         ></div>
