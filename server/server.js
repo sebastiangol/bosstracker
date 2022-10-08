@@ -270,6 +270,24 @@ app.put('/api/v1/bosses/:id/completed', async (req, res) => {
   }
 });
 
+// UPDATE BOSS NOTES
+app.put('/api/v1/bosses/:id/notes', async (req, res) => {
+  try {
+    const results = await db.query(
+      'UPDATE bosses SET notes = $1 WHERE boss_id = $2 RETURNING *',
+      [req.body.notes, req.params.id]
+    );
+    res.status(200).json({
+      status: 'success',
+      data: {
+        boss: results.rows[0],
+      },
+    });
+  } catch (err) {
+    console.log(err);
+  }
+});
+
 // DELETE BOSS
 app.delete('/api/v1/bosses/:id', async (req, res) => {
   try {

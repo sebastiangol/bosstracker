@@ -84,7 +84,7 @@ function YourPlaythroughs() {
   return (
     <div>
       <Header />
-      <div className='flex flex-col items-center text-center bg-teal-800 xl:max-w-6xl mx-auto p-4 m-4 mt-24 xl:mt-20 rounded-lg shadow-md min-h-[39.6rem] w-fit xl:mb-32'>
+      <div className='flex flex-col items-center text-center bg-teal-800 w-[71rem] xl:w-[35.3rem] xs:w-[21rem] mx-auto p-4 m-4 mt-24 xl:mt-20 rounded-lg shadow-md min-h-[39.6rem] xl:mb-32'>
         <h2 className='text-6xl xs:text-5xl 2xs:text-4xl pb-6'>
           Your Playthroughs
         </h2>

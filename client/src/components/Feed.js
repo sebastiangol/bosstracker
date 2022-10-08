@@ -75,7 +75,7 @@ function Feed() {
   }, [search, playthroughs]);
 
   return (
-    <div className='flex flex-col items-center text-center bg-teal-800  mx-auto p-4 m-4 mt-0 rounded-lg shadow-md w-fit xl:mb-32 sm:mt-16 xs:mt-12'>
+    <div className='flex flex-col items-center text-center bg-teal-800 w-[71rem] xl:w-[35.3rem] xs:w-[21rem] mx-auto p-4 m-4 mt-0 rounded-lg shadow-md xl:mb-32 sm:mt-16 xs:mt-12'>
       <h2 className='text-6xl md:text-4xl xs:text-3xl pb-6 md:pb-2'>
         Public Playthroughs
       </h2>
