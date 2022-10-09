@@ -107,6 +107,3 @@ The entire application is now responsive and will adapt to all screen sizes
 ![image](https://user-images.githubusercontent.com/75766182/194694372-0c3a21a2-d22e-4c25-848d-59f26f4462bd.png)
 * Notes can be edited by clicking the pencil icon or double-clicking on the notes area. The update is confirmed by clicking on the tick icon:
 ![image](https://user-images.githubusercontent.com/75766182/194694555-e424388b-bcbb-448e-9dd0-b8830165d017.png)
-
-#### To do
-* Alter initial location of text cursor when editing a note
