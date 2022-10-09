@@ -101,6 +101,8 @@ function DetailedBoss({
     e.preventDefault();
     setIsEditing(true);
     setTimeout(() => {
+      const end = ref.current.value.length;
+      ref.current.setSelectionRange(end, end);
       ref.current.focus();
     }, 0);
   };

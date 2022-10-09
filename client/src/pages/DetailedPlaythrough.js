@@ -1,15 +1,17 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import PlaythroughsAPI from '../apis/PlaythroughsAPI';
 import DetailedBoss from '../components/DetailedBoss';
 import Header from '../components/Header';
 import { PlaythroughsContext } from '../context/PlaythroughsContext';
 import DeletePlaythrough from '../components/DeletePlaythrough';
+import { ArrowLeftIcon } from '@heroicons/react/solid';
 import LoadingIcon from '../components/LoadingIcon';
 import axios from 'axios';
 
 function DetailedPlaythrough() {
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const { users, setUsers, session, bossDeleted } =
     useContext(PlaythroughsContext);
@@ -134,7 +136,11 @@ function DetailedPlaythrough() {
   return (
     <div>
       <Header />
-      <div className='flex flex-col items-center text-center bg-teal-800 w-[40rem] sm:w-[34rem] xs:w-[27rem] mx-auto p-4 m-4 mt-24 xl:mt-20 xl:pb-32 rounded-lg shadow-md min-h-[calc(100vh-7rem)] transition-all duration-150 ease-out'>
+      <div className='flex flex-col items-center text-center bg-teal-800 w-[40rem] sm:w-[34rem] xs:w-[27rem] mx-auto p-4 m-4 mt-24 xl:mt-20 xl:pb-32 rounded-lg shadow-md min-h-[calc(100vh-7rem)] transition-all duration-150 ease-out relative'>
+        <ArrowLeftIcon
+          className='absolute left-4 h-8 hover:text-amber-300 cursor-pointer'
+          onClick={() => navigate(-1 || '/')}
+        />
         {loading ? (
           <div className='flex justify-center items-center h-screen'>
             <LoadingIcon />
