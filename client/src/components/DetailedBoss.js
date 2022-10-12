@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { DotsVerticalIcon } from '@heroicons/react/solid';
 import {
   PlusCircleIcon,
@@ -9,7 +9,6 @@ import {
 import LoadingIcon from './LoadingIcon';
 import DeleteBoss from './DeleteBoss';
 import BossesAPI from '../apis/BossesAPI';
-import { useEffect } from 'react';
 
 function DetailedBoss({
   id,
@@ -224,6 +223,7 @@ function DetailedBoss({
           )}
         </div>
         <div
+          data-testid='toggle-note'
           disabled={loadingNote}
           onClick={() => {
             setOpenNote(() => (openNote == id ? 0 : id));

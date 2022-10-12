@@ -24,11 +24,13 @@ function DeleteBoss({ deleteBossModal, setDeleteBossModal, id, name }) {
 
   return (
     <div
+      data-testid='deleteBoss'
       className={`fixed justify-center items-center left-0 top-0 h-screen w-screen z-40 ${
         deleteBossModal === true ? 'flex' : 'hidden'
       }`}
     >
       <div
+        data-testid='toggle-deleteBg'
         className={`fixed justify-center items-center left-0 top-0 h-screen w-screen opacity-40 bg-black ${
           deleteBossModal === true ? 'flex' : 'hidden'
         }`}
@@ -36,6 +38,7 @@ function DeleteBoss({ deleteBossModal, setDeleteBossModal, id, name }) {
       ></div>
       <div className='relative flex flex-col h-fit items-center text-center bg-teal-800 rounded-lg shadow-md border border-amber-400 scale-150'>
         <span
+          data-testid='toggle-deleteX'
           className='absolute font-mono text-xs right-1 cursor-pointer'
           onClick={() => setDeleteBossModal(false)}
         >
@@ -48,6 +51,7 @@ function DeleteBoss({ deleteBossModal, setDeleteBossModal, id, name }) {
         <h4 className='pb-2'>{name}</h4>
         <div className='flex justify-between'>
           <button
+            data-testid='deleteBtn'
             className='normal-button w-14 2xs:text-xs mr-2 bg-red-800 hover:bg-red-700 text-white border-white disabled:pointer-events-none'
             disabled={loading}
             onClick={(e) => {
@@ -57,6 +61,7 @@ function DeleteBoss({ deleteBossModal, setDeleteBossModal, id, name }) {
             {loading ? <LoadingIcon /> : 'Delete'}
           </button>
           <button
+            data-testid='toggle-deleteBtn'
             className='normal-button w-14 2xs:text-xs ml-2'
             onClick={() => setDeleteBossModal(false)}
           >
