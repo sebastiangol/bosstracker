@@ -1,7 +1,7 @@
 # Boss Tracker
 This application's frontend is deployed using vercel: https://bosstracker.vercel.app/
 
-The backend is deployed on heroku.
+The backend is deployed on ~~heroku~~ Render.app.
 
 Application for tracking video game boss progress, using React/TailwindCSS for the frontend and PostgreSQL/Node.js/Express for the backend.
 
